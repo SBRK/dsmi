@@ -1,0 +1,547 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		069D05B0128AE5DC7EE31738 /* QtCore.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = 7BC2E65A5E699A5E5D834CA2 /* QtCore.framework */; };
+		1FBEC5F04CD36A072CBDFF0B /* qrc_images.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = AEDF5D6213366FC9B4765BAC /* qrc_images.cpp */; settings = {ATTRIBUTES = (); }; };
+		2DFCE2D4335B712BC0BF83A8 /* CoreMIDI.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = B4DDBBA69628DC4567EEAE5C /* CoreMIDI.framework */; };
+		3826A0833FCB54E86728C6EF /* QtNetwork.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = B6B9970B86A6C219B0869FE9 /* QtNetwork.framework */; };
+		416E87E917E22C7C8BCB23F7 /* moc_udp2midi.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 0DC31C6BC453279E4EBB0FB6 /* moc_udp2midi.cpp */; settings = {ATTRIBUTES = (); }; };
+		501667F26B3C1FF6767A7C12 /* QtGui.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = 9B36DA7E32F0304E780E7972 /* QtGui.framework */; };
+		51D4DBF7CB8537BE86EBD055 /* AppKit.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = 821416211D63F190AAAD016A /* AppKit.framework */; };
+		52D918C93E6B4532A70538FF /* icon.icns in Bundle Resources */ = {isa = PBXBuildFile; fileRef = 5C6B3BBE9AE4B4D2DE8D38C7 /* icon.icns */; settings = {ATTRIBUTES = (); }; };
+		67CB4287EDDF243B9FAAFCBD /* udp2midi.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 0CCCB33FC44F1C9E06DAC7F4 /* udp2midi.cpp */; settings = {ATTRIBUTES = (); }; };
+		837D99AFF85C4E1C8AFAF1C4 /* moc_wifimidiwindow.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 94C5A081C4EB4693E2A1AE4A /* moc_wifimidiwindow.cpp */; settings = {ATTRIBUTES = (); }; };
+		8D8C5A5B7DF4F6AC4606351D /* dswifimidi.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = CEEF9EAD9F824ED4FC52F233 /* dswifimidi.cpp */; settings = {ATTRIBUTES = (); }; };
+		A03BEA333F036F95D2827FCD /* midi2udp.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = D55204085143BAC9E065BA5F /* midi2udp.cpp */; settings = {ATTRIBUTES = (); }; };
+		C8FD4A1AAA37CF2CA2824CCF /* Carbon.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = DA138F75C9F545CDAE7FB264 /* Carbon.framework */; };
+		C970DEE26C28766E9311E00E /* QuickTime.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = A93DF979D20C91D1A15D9625 /* QuickTime.framework */; };
+		D6C2B44F0B13CCA300C03038 /* DSMidiWifi.app in Project Copy */ = {isa = PBXBuildFile; fileRef = D6C2B44C0B13CCA300C03038 /* DSMidiWifi.app */; };
+		F3CEB09469E599CFFD723CF7 /* wifimidiwindow.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = EFE3B335560B96AC65464C51 /* wifimidiwindow.cpp */; settings = {ATTRIBUTES = (); }; };
+		F9E76E570E10AF14870553A7 /* ApplicationServices.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = 27AE7A480FD6C52FCA80FECD /* ApplicationServices.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F6069D5A5DA8AA28EDB8B3C6 /* Project Copy */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /Users/Tob/coding/dsdev/dsmidiwifi/osx/DSMidiWifi;
+			dstSubfolderSpec = 0;
+			files = (
+				D6C2B44F0B13CCA300C03038 /* DSMidiWifi.app in Project Copy */,
+			);
+			name = "Project Copy";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0CCCB33FC44F1C9E06DAC7F4 /* udp2midi.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = udp2midi.cpp; sourceTree = "<group>"; };
+		0DC31C6BC453279E4EBB0FB6 /* moc_udp2midi.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_udp2midi.cpp; sourceTree = "<group>"; };
+		150449003F6B2FFEA888B79B /* DSMidiWifi.pro */ = {isa = PBXFileReference; lastKnownFileType = text; path = DSMidiWifi.pro; sourceTree = "<group>"; };
+		27AE7A480FD6C52FCA80FECD /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
+		49DFA59CDDA0B712BE8DF462 /* midi2udp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = midi2udp.h; sourceTree = "<group>"; };
+		5C6B3BBE9AE4B4D2DE8D38C7 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = images/icon.icns; sourceTree = "<group>"; };
+		6822B485C2256EFBED2F638B /* wifimidiwindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wifimidiwindow.h; sourceTree = "<group>"; };
+		6DC6F2DB31C745B2AB050B52 /* udp2midi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = udp2midi.h; sourceTree = "<group>"; };
+		6E270A8A07610EE8DBFD9275 /* settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = settings.h; sourceTree = "<group>"; };
+		7BC2E65A5E699A5E5D834CA2 /* QtCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtCore.framework; path = /Library/Frameworks/QtCore.framework; sourceTree = "<absolute>"; };
+		821416211D63F190AAAD016A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		8ED80A96032A99F6AB328584 /* images.qrc */ = {isa = PBXFileReference; lastKnownFileType = text; path = images.qrc; sourceTree = "<group>"; };
+		94C5A081C4EB4693E2A1AE4A /* moc_wifimidiwindow.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_wifimidiwindow.cpp; sourceTree = "<group>"; };
+		9B36DA7E32F0304E780E7972 /* QtGui.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtGui.framework; path = /Library/Frameworks/QtGui.framework; sourceTree = "<absolute>"; };
+		A93DF979D20C91D1A15D9625 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = /System/Library/Frameworks/QuickTime.framework; sourceTree = "<absolute>"; };
+		AEDF5D6213366FC9B4765BAC /* qrc_images.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = qrc_images.cpp; sourceTree = "<group>"; };
+		B4DDBBA69628DC4567EEAE5C /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = /System/Library/Frameworks/CoreMIDI.framework; sourceTree = "<absolute>"; };
+		B6B9970B86A6C219B0869FE9 /* QtNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtNetwork.framework; path = /Library/Frameworks/QtNetwork.framework; sourceTree = "<absolute>"; };
+		CEEF9EAD9F824ED4FC52F233 /* dswifimidi.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dswifimidi.cpp; sourceTree = "<group>"; };
+		D55204085143BAC9E065BA5F /* midi2udp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = midi2udp.cpp; sourceTree = "<group>"; };
+		D6C2B44C0B13CCA300C03038 /* DSMidiWifi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DSMidiWifi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA138F75C9F545CDAE7FB264 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		EFE3B335560B96AC65464C51 /* wifimidiwindow.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = wifimidiwindow.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2A1043669E6E5A7426EA502A /* Frameworks & Libraries */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DFCE2D4335B712BC0BF83A8 /* CoreMIDI.framework in Frameworks & Libraries */,
+				501667F26B3C1FF6767A7C12 /* QtGui.framework in Frameworks & Libraries */,
+				C8FD4A1AAA37CF2CA2824CCF /* Carbon.framework in Frameworks & Libraries */,
+				C970DEE26C28766E9311E00E /* QuickTime.framework in Frameworks & Libraries */,
+				51D4DBF7CB8537BE86EBD055 /* AppKit.framework in Frameworks & Libraries */,
+				3826A0833FCB54E86728C6EF /* QtNetwork.framework in Frameworks & Libraries */,
+				069D05B0128AE5DC7EE31738 /* QtCore.framework in Frameworks & Libraries */,
+				F9E76E570E10AF14870553A7 /* ApplicationServices.framework in Frameworks & Libraries */,
+			);
+			name = "Frameworks & Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		05596AB53D8D521C69802C27 /* DSMidiWifi */ = {
+			isa = PBXGroup;
+			children = (
+				FB61758D0F0FDA4BA867C3D5 /* Sources */,
+				46E892BBB6BB6952967E0561 /* Temporary Sources */,
+				883D7615C4D2DE3FA1218F12 /* Headers */,
+				7CABE3C80E79AD2B307756D2 /* Sources [qmake] */,
+				52C235EBF1C9B07808119459 /* Sources [RCC] */,
+				ED1E82605DD74B483AF3C982 /* External Frameworks and Libraries */,
+				D6C2B44D0B13CCA300C03038 /* Products */,
+			);
+			name = DSMidiWifi;
+			sourceTree = "<group>";
+		};
+		1DDD228647F922E13FD1C581 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				5C6B3BBE9AE4B4D2DE8D38C7 /* icon.icns */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		46E892BBB6BB6952967E0561 /* Temporary Sources */ = {
+			isa = PBXGroup;
+			children = (
+				0DC31C6BC453279E4EBB0FB6 /* moc_udp2midi.cpp */,
+				94C5A081C4EB4693E2A1AE4A /* moc_wifimidiwindow.cpp */,
+				AEDF5D6213366FC9B4765BAC /* qrc_images.cpp */,
+			);
+			name = "Temporary Sources";
+			sourceTree = "<group>";
+		};
+		52C235EBF1C9B07808119459 /* Sources [RCC] */ = {
+			isa = PBXGroup;
+			children = (
+				8ED80A96032A99F6AB328584 /* images.qrc */,
+			);
+			name = "Sources [RCC]";
+			sourceTree = "<group>";
+		};
+		7CABE3C80E79AD2B307756D2 /* Sources [qmake] */ = {
+			isa = PBXGroup;
+			children = (
+				150449003F6B2FFEA888B79B /* DSMidiWifi.pro */,
+			);
+			name = "Sources [qmake]";
+			sourceTree = "<group>";
+		};
+		883D7615C4D2DE3FA1218F12 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				49DFA59CDDA0B712BE8DF462 /* midi2udp.h */,
+				6E270A8A07610EE8DBFD9275 /* settings.h */,
+				6DC6F2DB31C745B2AB050B52 /* udp2midi.h */,
+				6822B485C2256EFBED2F638B /* wifimidiwindow.h */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		D6C2B44D0B13CCA300C03038 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D6C2B44C0B13CCA300C03038 /* DSMidiWifi.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ED1E82605DD74B483AF3C982 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				B4DDBBA69628DC4567EEAE5C /* CoreMIDI.framework */,
+				9B36DA7E32F0304E780E7972 /* QtGui.framework */,
+				DA138F75C9F545CDAE7FB264 /* Carbon.framework */,
+				A93DF979D20C91D1A15D9625 /* QuickTime.framework */,
+				821416211D63F190AAAD016A /* AppKit.framework */,
+				B6B9970B86A6C219B0869FE9 /* QtNetwork.framework */,
+				7BC2E65A5E699A5E5D834CA2 /* QtCore.framework */,
+				27AE7A480FD6C52FCA80FECD /* ApplicationServices.framework */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		FB61758D0F0FDA4BA867C3D5 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				CEEF9EAD9F824ED4FC52F233 /* dswifimidi.cpp */,
+				D55204085143BAC9E065BA5F /* midi2udp.cpp */,
+				0CCCB33FC44F1C9E06DAC7F4 /* udp2midi.cpp */,
+				EFE3B335560B96AC65464C51 /* wifimidiwindow.cpp */,
+				1DDD228647F922E13FD1C581 /* images */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D4BDFC06141106E7346622A /* DSMidiWifi */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D6C2B4660B13CD0400C03038 /* Build configuration list for PBXNativeTarget "DSMidiWifi" */;
+			buildPhases = (
+				D7BA7D76DAB5DD13389D6332 /* Qt Qmake */,
+				A0A52A2ADF7A1E2A99738674 /* Qt Preprocessors */,
+				F6069D5A5DA8AA28EDB8B3C6 /* Project Copy */,
+				C29B8785722055ED95EF7B57 /* Build Sources */,
+				2A1043669E6E5A7426EA502A /* Frameworks & Libraries */,
+				3787F99312C85FF0073FD7BA /* Bundle Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DSMidiWifi;
+			productName = DSMidiWifi;
+			productReference = D6C2B44C0B13CCA300C03038 /* DSMidiWifi.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		91B15E841AA80083484172DE /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 2A951308CDB28F104D0A4BD2 /* Build configuration list for PBXProject "DSMidiWifi" */;
+			compatibilityVersion = "Xcode 2.4";
+			hasScannedForEncodings = 1;
+			mainGroup = 05596AB53D8D521C69802C27 /* DSMidiWifi */;
+			productRefGroup = D6C2B44D0B13CCA300C03038 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D4BDFC06141106E7346622A /* DSMidiWifi */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3787F99312C85FF0073FD7BA /* Bundle Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52D918C93E6B4532A70538FF /* icon.icns in Bundle Resources */,
+			);
+			name = "Bundle Resources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A0A52A2ADF7A1E2A99738674 /* Qt Preprocessors */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "Qt Preprocessors";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C \"/Users/Tob/coding/dsdev/dsmidiwifi/osx/DSMidiWifi\" -f \"DSMidiWifi.xcodeproj/qt_preprocess.mak\"";
+		};
+		D7BA7D76DAB5DD13389D6332 /* Qt Qmake */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "Qt Qmake";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C \"/Users/Tob/coding/dsdev/dsmidiwifi/osx/DSMidiWifi\" -f \"DSMidiWifi.xcodeproj/qt_makeqmake.mak\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C29B8785722055ED95EF7B57 /* Build Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D8C5A5B7DF4F6AC4606351D /* dswifimidi.cpp in Build Sources */,
+				A03BEA333F036F95D2827FCD /* midi2udp.cpp in Build Sources */,
+				67CB4287EDDF243B9FAAFCBD /* udp2midi.cpp in Build Sources */,
+				F3CEB09469E599CFFD723CF7 /* wifimidiwindow.cpp in Build Sources */,
+				416E87E917E22C7C8BCB23F7 /* moc_udp2midi.cpp in Build Sources */,
+				837D99AFF85C4E1C8AFAF1C4 /* moc_wifimidiwindow.cpp in Build Sources */,
+				1FBEC5F04CD36A072CBDFF0B /* qrc_images.cpp in Build Sources */,
+			);
+			name = "Build Sources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		8DB1DD96F65B1BF1FFC506E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Debug;
+		};
+		95E1EB2E5DDD587BE5B3E548 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				COPY_PHASE_STRIP = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Release;
+		};
+		D6C2B4670B13CD0400C03038 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					i386,
+					ppc,
+				);
+				BUILD_ROOT = /Users/Tob/coding/dsdev/dsmidiwifi/osx/DSMidiWifi;
+				CC = "";
+				COPY_PHASE_STRIP = NO;
+				CPLUSPLUS = "";
+				DYLIB_COMPATIBILITY_VERSION = 1.0;
+				DYLIB_CURRENT_VERSION = 1.0.0;
+				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = (
+					/Library/Frameworks/QtCore.framework/Versions/4/Headers,
+					/usr/include/QtCore,
+					/Library/Frameworks/QtNetwork.framework/Versions/4/Headers,
+					/usr/include/QtNetwork,
+					/Library/Frameworks/QtGui.framework/Versions/4/Headers,
+					/usr/include/QtGui,
+					/usr/include,
+					.,
+					.,
+					.,
+					/usr/local/include,
+					/System/Library/Frameworks/CarbonCore.framework/Headers,
+					"/usr/local/Qt4.2/mkspecs/macx-xcode",
+				);
+				INFOPLIST_FILE = Info.plist;
+				LEXFLAGS = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OBJROOT = ./;
+				OTHER_CFLAGS = (
+					"-pipe",
+					"-g",
+					"-Wall",
+					"-W",
+					"-F/Library/Frameworks",
+					"-DQT_GUI_LIB",
+					"-DQT_NETWORK_LIB",
+					"-DQT_CORE_LIB",
+					"-DQT_SHARED",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-pipe",
+					"-g",
+					"-Wall",
+					"-W",
+					"-F/Library/Frameworks",
+					"-DQT_GUI_LIB",
+					"-DQT_NETWORK_LIB",
+					"-DQT_CORE_LIB",
+					"-DQT_SHARED",
+				);
+				OTHER_LDFLAGS = (
+					"-headerpad_max_install_names",
+					"-F/Library/Frameworks",
+					"$(OTHER_LDFLAGS_QUOTED_1)",
+					"-lz",
+					"-lm",
+					"-liconv",
+				);
+				OTHER_LDFLAGS_QUOTED_1 = "-L\"/Library/Frameworks\"";
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = DSMidiWifi;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "";
+				YACCFLAGS = "-d";
+			};
+			name = Debug;
+		};
+		D6C2B4680B13CD0400C03038 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					i386,
+					ppc,
+				);
+				BUILD_ROOT = /Users/Tob/coding/dsdev/dsmidiwifi/osx/DSMidiWifi;
+				CC = "";
+				COPY_PHASE_STRIP = YES;
+				CPLUSPLUS = "";
+				DYLIB_COMPATIBILITY_VERSION = 1.0;
+				DYLIB_CURRENT_VERSION = 1.0.0;
+				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = (
+					/Library/Frameworks/QtCore.framework/Versions/4/Headers,
+					/usr/include/QtCore,
+					/Library/Frameworks/QtNetwork.framework/Versions/4/Headers,
+					/usr/include/QtNetwork,
+					/Library/Frameworks/QtGui.framework/Versions/4/Headers,
+					/usr/include/QtGui,
+					/usr/include,
+					.,
+					.,
+					.,
+					/usr/local/include,
+					/System/Library/Frameworks/CarbonCore.framework/Headers,
+					"/usr/local/Qt4.2/mkspecs/macx-xcode",
+				);
+				INFOPLIST_FILE = Info.plist;
+				LEXFLAGS = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OBJROOT = ./;
+				OTHER_CFLAGS = (
+					"-pipe",
+					"-g",
+					"-Wall",
+					"-W",
+					"-F/Library/Frameworks",
+					"-DQT_GUI_LIB",
+					"-DQT_NETWORK_LIB",
+					"-DQT_CORE_LIB",
+					"-DQT_SHARED",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-pipe",
+					"-g",
+					"-Wall",
+					"-W",
+					"-F/Library/Frameworks",
+					"-DQT_GUI_LIB",
+					"-DQT_NETWORK_LIB",
+					"-DQT_CORE_LIB",
+					"-DQT_SHARED",
+				);
+				OTHER_LDFLAGS = (
+					"-headerpad_max_install_names",
+					"-F/Library/Frameworks",
+					"$(OTHER_LDFLAGS_QUOTED_1)",
+					"-lz",
+					"-lm",
+					"-liconv",
+				);
+				OTHER_LDFLAGS_QUOTED_1 = "-L\"/Library/Frameworks\"";
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = DSMidiWifi;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "";
+				YACCFLAGS = "-d";
+			};
+			name = Release;
+		};
+		D6C2B4690B13CD0400C03038 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					i386,
+					ppc,
+				);
+				BUILD_ROOT = /Users/Tob/coding/dsdev/dsmidiwifi/osx/DSMidiWifi;
+				CC = "";
+				CPLUSPLUS = "";
+				DYLIB_COMPATIBILITY_VERSION = 1.0;
+				DYLIB_CURRENT_VERSION = 1.0.0;
+				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				HEADER_SEARCH_PATHS = (
+					/Library/Frameworks/QtCore.framework/Versions/4/Headers,
+					/usr/include/QtCore,
+					/Library/Frameworks/QtNetwork.framework/Versions/4/Headers,
+					/usr/include/QtNetwork,
+					/Library/Frameworks/QtGui.framework/Versions/4/Headers,
+					/usr/include/QtGui,
+					/usr/include,
+					.,
+					.,
+					.,
+					/usr/local/include,
+					/System/Library/Frameworks/CarbonCore.framework/Headers,
+					"/usr/local/Qt4.2/mkspecs/macx-xcode",
+				);
+				INFOPLIST_FILE = Info.plist;
+				LEXFLAGS = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OBJROOT = ./;
+				OTHER_CFLAGS = (
+					"-pipe",
+					"-g",
+					"-Wall",
+					"-W",
+					"-F/Library/Frameworks",
+					"-DQT_GUI_LIB",
+					"-DQT_NETWORK_LIB",
+					"-DQT_CORE_LIB",
+					"-DQT_SHARED",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-pipe",
+					"-g",
+					"-Wall",
+					"-W",
+					"-F/Library/Frameworks",
+					"-DQT_GUI_LIB",
+					"-DQT_NETWORK_LIB",
+					"-DQT_CORE_LIB",
+					"-DQT_SHARED",
+				);
+				OTHER_LDFLAGS = (
+					"-headerpad_max_install_names",
+					"-F/Library/Frameworks",
+					"$(OTHER_LDFLAGS_QUOTED_1)",
+					"-lz",
+					"-lm",
+					"-liconv",
+				);
+				OTHER_LDFLAGS_QUOTED_1 = "-L\"/Library/Frameworks\"";
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = DSMidiWifi;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "";
+				YACCFLAGS = "-d";
+			};
+			name = Default;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2A951308CDB28F104D0A4BD2 /* Build configuration list for PBXProject "DSMidiWifi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8DB1DD96F65B1BF1FFC506E0 /* Debug */,
+				95E1EB2E5DDD587BE5B3E548 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D6C2B4660B13CD0400C03038 /* Build configuration list for PBXNativeTarget "DSMidiWifi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6C2B4670B13CD0400C03038 /* Debug */,
+				D6C2B4680B13CD0400C03038 /* Release */,
+				D6C2B4690B13CD0400C03038 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 91B15E841AA80083484172DE /* Project object */;
+}
