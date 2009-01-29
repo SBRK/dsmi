@@ -31,6 +31,8 @@ extern const u32 linear_freq_table[LINEAR_FREQ_TABLE_SIZE];
 
 void psg_init()
 {
+	SOUND_CR = SOUND_ENABLE;
+	SOUND_MASTER_VOL = 127;
 	int i;
 	for(i=0;i<8;++i) {
 		channels[i].vol = 127;

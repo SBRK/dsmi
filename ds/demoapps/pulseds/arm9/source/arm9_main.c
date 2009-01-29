@@ -9,53 +9,42 @@ License: GPL
 ******************/
 
 #include <nds.h>
-#include <nds/arm9/console.h>
-
 #include <stdio.h>
-
-#include "libdsmi.h"
+#include <libdsmi.h>
 
 #include "dsmi_logo_ds.h"
-#include "../../generic/command.h"
+#include "../../generic/midimsg.h"
 
-u16 *sub_vram = (u16*)BG_BMP_RAM_SUB(2);
+void midiToArm7(u8 message, u8 data1, u8 data2)
+{
+	MidiMsg midimsg;
+	midimsg.msg = message;
+	midimsg.data1 = data1;
+	midimsg.data2 = data2;
+	fifoSendDatamsg(FIFO_MIDI, sizeof(midimsg), (u8*)&midimsg);
+}
 
 int main(void)
 {
-	powerON(POWER_ALL);
-	irqInit();
-	
 	lcdMainOnBottom();
-	
 	irqEnable(IRQ_VBLANK);
 	
-	videoSetMode(MODE_5_2D | DISPLAY_BG0_ACTIVE);
-	videoSetModeSub(MODE_5_2D | DISPLAY_BG0_ACTIVE | DISPLAY_BG2_ACTIVE);
+	soundEnable();
+	
 	vramSetBankC(VRAM_C_SUB_BG);
 	
-	// Init console
-	SUB_BG0_CR = BG_MAP_BASE(4)| BG_TILE_BASE(0) | BG_PRIORITY(0);
+	videoSetModeSub(MODE_5_2D);
+	PrintConsole *pc = consoleInit(NULL, 0, BgType_Text4bpp, BgSize_T_256x256, 4, 0, false);
 	BG_PALETTE_SUB[255] = RGB15(31,15,0);
-	consoleInitDefault((u16*)SCREEN_BASE_BLOCK_SUB(4), (u16*)CHAR_BASE_BLOCK_SUB(0), 16);
+	bgSetPriority(pc->bgId, 0);
 	
-	// Gfx on sub
-	SUB_BG2_CR = BG_BMP16_256x256 | BG_MAP_BASE(2) | BG_PRIORITY(1);
-	SUB_BG2_XDX = 1 << 8;
-	SUB_BG2_XDY = 0;
-	SUB_BG2_YDX = 0;
-	SUB_BG2_YDY = 1 << 8;
+	int bg2 = bgInitSub(2, BgType_Bmp16, BgSize_B16_256x256, 2, 0);
+	bgSetPriority(bg2, 1);
+	u16 *bg2vram = bgGetGfxPtr(bg2);
 	
-	u16 i;
-	for(i=0; i<256*192; ++i)
-		sub_vram[i] = dsmi_logo_ds[i];
-	
-	CommandInit();
+	dmaCopy(dsmi_logo_ds, bg2vram, 256*192);
 	
 	iprintf("\x1b[12;12HPulse DS\n");
-	
-	dsmi_setup_wifi_support();
-	
-	iprintf("\x1b[15;0H\x1b[KConnecting\n");
 	
 	// Connect
 	int res = dsmi_connect();
@@ -72,16 +61,14 @@ int main(void)
 		// We query every 60th of a second (notice the swiWaitForVBlank).
 		// For lower latency you should query more frequently.
 		
-		// 1. Query and play until there are no more new messages
-		while(dsmi_read(&message, &data1, &data2))
-		{
+		// Query and play until there are no more new messages
+		while(dsmi_read(&message, &data1, &data2)) {
 			printf("0x%x 0x%x 0x%x\n", message, data1, data2);
-			CommandMidiMsg(message, data1, data2); // Send the message to the arm7
+			midiToArm7(message, data1, data2);
 		}
 		
-		// 2. Wait
 		swiWaitForVBlank();
 	}
-
+	
 	return 0;
 }
