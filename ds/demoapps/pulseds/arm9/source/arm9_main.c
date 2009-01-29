@@ -26,22 +26,22 @@ void midiToArm7(u8 message, u8 data1, u8 data2)
 
 int main(void)
 {
+	// Video setup
 	lcdMainOnBottom();
 	irqEnable(IRQ_VBLANK);
 	
-	soundEnable();
-	
 	vramSetBankC(VRAM_C_SUB_BG);
 	
+    // Text console
 	videoSetModeSub(MODE_5_2D);
 	PrintConsole *pc = consoleInit(NULL, 0, BgType_Text4bpp, BgSize_T_256x256, 4, 0, false);
 	BG_PALETTE_SUB[255] = RGB15(31,15,0);
 	bgSetPriority(pc->bgId, 0);
 	
+    // DSMI Logo
 	int bg2 = bgInitSub(2, BgType_Bmp16, BgSize_B16_256x256, 2, 0);
 	bgSetPriority(bg2, 1);
 	u16 *bg2vram = bgGetGfxPtr(bg2);
-	
 	dmaCopy(dsmi_logo_ds, bg2vram, 256*192);
 	
 	iprintf("\x1b[12;12HPulse DS\n");
