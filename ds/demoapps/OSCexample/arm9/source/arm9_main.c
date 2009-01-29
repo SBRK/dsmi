@@ -29,10 +29,6 @@ u16 *sub_vram = (u16*)BG_BMP_RAM_SUB(2);
 u16 *bg3vram = (u16*)BG_BMP_RAM(0);
 
 
-void printChannel()
-{
-	//iprintf("\x1b[15;0H\x1b[Kdebug: %u  \n", fval);
-}
 void drawKaos(){
 	int i;
 	for(i=10; i <= 160; i++){
@@ -113,10 +109,16 @@ void VblankHandler()
 {
 	scanKeys();
 	touch = touchReadXY();
+	u16 keys = keysDown();
 	
 	if(!touch_was_down && PEN_DOWN) {
 		
 		touch_was_down = 1;
+		
+		dsmi_osc_new("/ds/touch/pendown");
+		dsmi_osc_addintarg( 1);
+		dsmi_osc_send();
+		
 		if( touch.px > 170 && touch.px < 190 && touch.py > 10 && touch.py < 160){
 		  
 		  slider_touch1 = 1;
@@ -124,7 +126,7 @@ void VblankHandler()
  		  slider_val1 = touch.py;
 		  
 		  dsmi_osc_new( "/ds/slider1");
-		  dsmi_osc_addintarg( 160 - slider_val1 );
+		  dsmi_osc_addfloatarg( (float)(160 - slider_val1) / 150.0f );
 		  dsmi_osc_send();
 		  drawSlider1();
 		}
@@ -135,7 +137,7 @@ void VblankHandler()
  		  slider_val2 = touch.py;
 		  
 		  dsmi_osc_new( "/ds/slider2");
-		  dsmi_osc_addintarg( 160 - slider_val2 );
+		  dsmi_osc_addfloatarg( (float)(160 - slider_val2) / 150.0f );
 		  dsmi_osc_send();
 		  drawSlider2();
 		}
@@ -146,7 +148,7 @@ void VblankHandler()
  		  slider_val3 = touch.py;
 		  
 		  dsmi_osc_new( "/ds/slider3");
-		  dsmi_osc_addintarg( 160 - slider_val3 );
+		  dsmi_osc_addfloatarg( (float)(160 - slider_val3) / 150.0f );
 		  dsmi_osc_send();
 		  drawSlider3();
 		}
@@ -158,15 +160,22 @@ void VblankHandler()
 		  kaos_x = touch.px;
  		  kaos_y = touch.py;
 		  
-		  dsmi_osc_new( "/ds/kaos");
-		  dsmi_osc_addfloatarg( kaos_x - 10 );
-		  dsmi_osc_addfloatarg( 160 - kaos_y);
+		  dsmi_osc_new( "/ds/kaos/x");
+		  dsmi_osc_addfloatarg( (float)(kaos_x - 10) / 150.0f );
 		  dsmi_osc_send();
+		  
+		  dsmi_osc_new( "/ds/kaos/y");
+		  dsmi_osc_addfloatarg( (float)(160 - kaos_y) / 150.0f );
+		  dsmi_osc_send();
+		  
 		  drawKaos();
 		}
-		dsmi_osc_new( "/ds/touch/new");
-		dsmi_osc_addfloatarg( (long) touch.px);
-		dsmi_osc_addfloatarg( (long) touch.py);
+		dsmi_osc_new( "/ds/touch/x");
+		dsmi_osc_addfloatarg( (float) touch.px);
+		dsmi_osc_send();
+		
+		dsmi_osc_new( "/ds/touch/y");
+		dsmi_osc_addfloatarg( (float) touch.py);
 		dsmi_osc_send();
 	}
 	
@@ -177,8 +186,8 @@ void VblankHandler()
 		slider_touch2 = 0;
 		slider_touch3 = 0;
 		kaos_touch = 0;
-		dsmi_osc_new("/ds/touch/status");
-		dsmi_osc_addstringarg( "Pen up.");
+		dsmi_osc_new("/ds/touch/pendown");
+		dsmi_osc_addintarg( 0);
 		dsmi_osc_send();
 		
 	}
@@ -192,7 +201,7 @@ void VblankHandler()
 		  if (slider_val1 < 10) slider_val1 = 10;
 		  
 		  dsmi_osc_new( "/ds/slider1");
-		  dsmi_osc_addintarg( 160 - slider_val1 );
+		  dsmi_osc_addfloatarg( (float)(160 - slider_val1) / 150.0f );
 		  dsmi_osc_send();
 		  drawSlider1();
 		}
@@ -203,7 +212,7 @@ void VblankHandler()
 		  if (slider_val2 < 10) slider_val2 = 10;
 		  
 		  dsmi_osc_new( "/ds/slider2");
-		  dsmi_osc_addintarg( 160 - slider_val2 );
+		  dsmi_osc_addfloatarg( (float)(160 - slider_val2) / 150.0f );
 		  dsmi_osc_send();
 		  drawSlider2();
 		}
@@ -214,7 +223,7 @@ void VblankHandler()
 		  if (slider_val3 < 10) slider_val3 = 10;
 		  
 		  dsmi_osc_new( "/ds/slider3");
-		  dsmi_osc_addintarg( 160 - slider_val3 );
+		  dsmi_osc_addfloatarg( (float)(160 - slider_val3) / 150.0f );
 		  dsmi_osc_send();
 		  drawSlider3();
 		}
@@ -228,10 +237,14 @@ void VblankHandler()
 		  if (kaos_y > 160) kaos_y = 160;
 		  if (kaos_y < 10) kaos_y = 10;
 		 
-		  dsmi_osc_new( "/ds/kaos");
-		  dsmi_osc_addfloatarg( kaos_x - 10 );
-		  dsmi_osc_addfloatarg( 160 - kaos_y);
+		  dsmi_osc_new( "/ds/kaos/x");
+		  dsmi_osc_addfloatarg( (float)(kaos_x - 10) / 150.0f );
 		  dsmi_osc_send();
+		  
+		  dsmi_osc_new( "/ds/kaos/y");
+		  dsmi_osc_addfloatarg( (float)(160 - kaos_y) / 150.0f);
+		  dsmi_osc_send();
+		  
 		  drawKaos();
 		}
 		
