@@ -4,6 +4,17 @@
 #include "psg.h"
 #include "../../generic/midimsg.h"
 
+// Thanks to LiraNuna for this cool function
+void PM_SetRegister(int reg, int control)
+{
+    SerialWaitBusy();
+    REG_SPICNT = SPI_ENABLE | SPI_DEVICE_POWER |SPI_BAUD_1MHz | SPI_CONTINUOUS;
+    REG_SPIDATA = reg;
+    SerialWaitBusy();
+    REG_SPICNT = SPI_ENABLE | SPI_DEVICE_POWER |SPI_BAUD_1MHz;
+    REG_SPIDATA = control;
+}
+
 void VcountHandler() {
 	inputGetAndSend();
 }
@@ -40,6 +51,8 @@ int main() {
 	psg_init();
 	
 	irqEnable( IRQ_VBLANK | IRQ_VCOUNT | IRQ_NETWORK);   
+
+    PM_SetRegister(0, 9);
 
 	while (1) {swiWaitForVBlank(); }
 }
