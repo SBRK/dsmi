@@ -14,10 +14,6 @@
 #define DS_PORT		9001
 #define DS_SENDER_PORT	9002
 
-#define VCOUNT	(*((u16 volatile *) 0x04000006))
-
-
-
 int sock, sockin;
 struct sockaddr_in addr_out_from, addr_out_to, addr_in;
 
@@ -41,72 +37,7 @@ void dsmi_uart_recv(char * data, unsigned int size)
 	// TODO
 }
 
-
-// wifi timer function, to update internals of sgIP
-void Timer_50ms(void)
-{
-	Wifi_Timer(50);
-	
-	if(wifi_enabled == DSMI_WIFI)
-	{
-		// Send a keepalive beacon every 3 seconds
-		static u8 counter = 0;
-		counter++;
-		if(counter == 60)
-		{
-			counter = 0;
-			dsmi_write(0, 0, 0);
-		}
-	}
-}
-
-
-// notification function to send fifo message to arm7
-void arm9_synctoarm7(void) { // send fifo message
-	REG_IPC_FIFO_TX=0x87654321;
-}
-
-
-// interrupt handler to receive fifo messages from arm7
-void arm9_fifo(void) { // check incoming fifo messages
-	u32 value = REG_IPC_FIFO_RX;
-	if(value == 0x87654321)
-		Wifi_Sync();
-}
-
-
-
 // ------------ SETUP ------------ //
-
-extern void dsmi_setup_wifi_support(void)
-{
-	// send fifo message to initialize the arm7 wifi
-	REG_IPC_FIFO_CR = IPC_FIFO_ENABLE | IPC_FIFO_SEND_CLEAR; // enable & clear FIFO
-	
-	u32 Wifi_pass= Wifi_Init(WIFIINIT_OPTION_USELED);
-	REG_IPC_FIFO_TX=0x12345678;
-	REG_IPC_FIFO_TX=Wifi_pass;
-	*((volatile u16 *)0x0400010E) = 0; // disable timer3
-	
-	irqSet(IRQ_TIMER3, Timer_50ms); // setup timer IRQ
-	irqEnable(IRQ_TIMER3);
-	irqSet(IRQ_FIFO_NOT_EMPTY, arm9_fifo); // setup fifo IRQ
-	irqEnable(IRQ_FIFO_NOT_EMPTY);
-	
-	REG_IPC_FIFO_CR = IPC_FIFO_ENABLE | IPC_FIFO_RECV_IRQ; // enable FIFO IRQ
-	
-	Wifi_SetSyncHandler(arm9_synctoarm7); // tell wifi lib to use our handler to notify arm7
-	
-	// set timer3
-	*((volatile u16 *)0x0400010C) = -6553; // 6553.1 * 256 cycles = ~50ms;
-	*((volatile u16 *)0x0400010E) = 0x00C2; // enable, irq, 1/256 clock
-		
-	while(Wifi_CheckInit()==0) { // wait for arm7 to be initted successfully
-		while(VCOUNT>192); // wait for vblank
-		while(VCOUNT<192);
-	}
-}
-
 
 // If a DSerial is inserted, this sets up the connection to the DSerial.
 // Else, it connects to the default access point stored in Nintendo WFC
@@ -116,11 +47,13 @@ extern void dsmi_setup_wifi_support(void)
 // Returns 1 if connected, and 0 if failed.
 extern int dsmi_connect(void)
 {
-	if(dsmi_connect_dserial())
+	if(dsmi_connect_dserial()) {
 		return 1;
+	}
 	
-	if(dsmi_connect_wifi())
+	if(dsmi_connect_wifi()) {
 		return 1;
+	}
 	
 	return 0;
 }
@@ -161,53 +94,51 @@ extern int dsmi_connect_dserial(void)
 
 extern int dsmi_connect_wifi(void)
 {
-	int i;
-	Wifi_AutoConnect(); // request connect
+	if(!Wifi_InitDefault(WFC_CONNECT)) {
+		return 0;
+	}
 	
-	while(1)
-	{
-		i = Wifi_AssocStatus(); // check status
-		if(i == ASSOCSTATUS_ASSOCIATED)
-		{
-			sock = socket(AF_INET, SOCK_DGRAM, 0); // setup socket for DGRAM (UDP), returns with a socket handle
-			sockin = socket(AF_INET, SOCK_DGRAM, 0);
-			
-			// Source
-			addr_out_from.sin_family = AF_INET;
-			addr_out_from.sin_port = htons(DS_SENDER_PORT);
-			addr_out_from.sin_addr.s_addr = INADDR_ANY;
-			
-			// Destination
-			addr_out_to.sin_family = AF_INET;
-			addr_out_to.sin_port = htons(PC_PORT);
-			
-			unsigned long gateway, snmask, dns1, dns2;
-			Wifi_GetIPInfo(&gateway, &snmask, &dns1, &dns2);
-
-			unsigned long my_ip = Wifi_GetIP(); // Set IP to broadcast IP
-			unsigned long bcast_ip = my_ip | ~snmask;
-			
-			addr_out_to.sin_addr.s_addr = bcast_ip;
-			
-			// Receiver
-			addr_in.sin_family = AF_INET;
-			addr_in.sin_port = htons(DS_PORT);
-			addr_in.sin_addr.s_addr = INADDR_ANY;
-			
-			bind(sock, (struct sockaddr*)&addr_out_from, sizeof(addr_out_from));
-			bind(sockin, (struct sockaddr*)&addr_in, sizeof(addr_in));
-			
-			u8 val = 1;
-			ioctl(sockin, FIONBIO, (char*)&val);  // Enable non-blocking I/O
-			
-			default_interface = DSMI_WIFI;
-			wifi_enabled = 1;
-			
-			return 1;
-		}
+	int i = Wifi_AssocStatus();
+	if(i == ASSOCSTATUS_CANNOTCONNECT) {
+		return 0;
+	} else if(i == ASSOCSTATUS_ASSOCIATED) {
+		sock = socket(AF_INET, SOCK_DGRAM, 0); // setup socket for DGRAM (UDP), returns with a socket handle
+		sockin = socket(AF_INET, SOCK_DGRAM, 0);
 		
-		if(i == ASSOCSTATUS_CANNOTCONNECT)
-			return 0;
+		// Source
+		addr_out_from.sin_family = AF_INET;
+		addr_out_from.sin_port = htons(DS_SENDER_PORT);
+		addr_out_from.sin_addr.s_addr = INADDR_ANY;
+		
+		// Destination
+		addr_out_to.sin_family = AF_INET;
+		addr_out_to.sin_port = htons(PC_PORT);
+		
+		struct in_addr gateway, snmask, dns1, dns2;
+		Wifi_GetIPInfo(&gateway, &snmask, &dns1, &dns2);
+
+		unsigned long my_ip = Wifi_GetIP(); // Set IP to broadcast IP
+		unsigned long bcast_ip = my_ip | ~snmask.s_addr;
+		
+		addr_out_to.sin_addr.s_addr = bcast_ip;
+		
+		// Receiver
+		addr_in.sin_family = AF_INET;
+		addr_in.sin_port = htons(DS_PORT);
+		addr_in.sin_addr.s_addr = INADDR_ANY;
+		
+		bind(sock, (struct sockaddr*)&addr_out_from, sizeof(addr_out_from));
+		bind(sockin, (struct sockaddr*)&addr_in, sizeof(addr_in));
+		
+		u8 val = 1;
+		ioctl(sockin, FIONBIO, (char*)&val);  // Enable non-blocking I/O
+		
+		default_interface = DSMI_WIFI;
+		wifi_enabled = 1;
+		
+		return 1;
+	} else {
+		return 0;
 	}
 }
 

@@ -45,14 +45,6 @@
 extern "C" {
 #endif
 
-// ------------ SETUP ------------ //
-
-// Initializes Wifi (call this at the beginning
-// of your app if you want to use wifi!)
-extern void dsmi_setup_wifi_support(void);
-
-
-
 // ------------ CONNECT ------------ //
 
 // If a DSerial is inserted, this sets up the connection to the DSerial.
