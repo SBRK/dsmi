@@ -2,7 +2,7 @@
 .SUFFIXES:
 #---------------------------------------------------------------------------------
 ifeq ($(strip $(DEVKITARM)),)
-$(error "Please set DEVKITARM in your environment. export DEVKITARM=<path to>devkitARM)
+$(error "Please set DEVKITARM in your environment. export DEVKITARM=<path to>devkitARM")
 endif
 
 include $(DEVKITARM)/ds_rules
@@ -19,6 +19,7 @@ SOURCES		:=	source
 INCLUDES	:=	include
 DATA		:=
 
+
 #---------------------------------------------------------------------------------
 # options for code generation
 #---------------------------------------------------------------------------------
@@ -34,12 +35,12 @@ CXXFLAGS	:=	$(CFLAGS) -fno-rtti -fno-exceptions
 
 ASFLAGS	:=	-g $(ARCH) -march=armv5te -mtune=arm946e-s
 
-LDFLAGS	=	-specs=ds_arm9.specs -g $(ARCH) -mno-fpu -Wl,-Map,$(notdir $*.map)
+LDFLAGS	=	-specs=ds_arm9.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project
 #---------------------------------------------------------------------------------
-LIBS	:= -ldsmi -ldswifi9 -lnds9
+LIBS	:=	-ldsmi -ldswifi9 -lnds9
  
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
@@ -94,7 +95,7 @@ export LIBPATHS	:=	$(foreach dir,$(LIBDIRS),-L$(dir)/lib)
 #---------------------------------------------------------------------------------
 $(BUILD):
 	@[ -d $@ ] || mkdir -p $@
-	@make --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
+	@$(MAKE) --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
  
 #---------------------------------------------------------------------------------
 clean:
@@ -104,8 +105,6 @@ clean:
  
 #---------------------------------------------------------------------------------
 else
- 
-DEPENDS	:=	$(OFILES:.o=.d)
  
 #---------------------------------------------------------------------------------
 # main targets
@@ -126,8 +125,7 @@ $(ARM9ELF)	:	$(OFILES)
 	@echo $(notdir $<)
 	@$(bin2o)
 
-
--include $(DEPENDS)
+-include $(DEPSDIR)/*.d
  
 #---------------------------------------------------------------------------------------
 endif
