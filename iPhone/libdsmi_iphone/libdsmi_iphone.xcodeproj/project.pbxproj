@@ -1,0 +1,223 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C809B7AC0F2B76E2003FA00D /* libdsmi_iphone.h in Headers */ = {isa = PBXBuildFile; fileRef = C809B7A80F2B76E2003FA00D /* libdsmi_iphone.h */; };
+		C809B7AD0F2B76E2003FA00D /* libdsmi_iphone.m in Sources */ = {isa = PBXBuildFile; fileRef = C809B7A90F2B76E2003FA00D /* libdsmi_iphone.m */; };
+		C809B7AE0F2B76E2003FA00D /* osc_client.c in Sources */ = {isa = PBXBuildFile; fileRef = C809B7AA0F2B76E2003FA00D /* osc_client.c */; };
+		C809B7AF0F2B76E2003FA00D /* osc_client.h in Headers */ = {isa = PBXBuildFile; fileRef = C809B7AB0F2B76E2003FA00D /* osc_client.h */; };
+		C8B530520F35325D00674424 /* libdsmi_iphone.h in Headers */ = {isa = PBXBuildFile; fileRef = C8B530510F35325D00674424 /* libdsmi_iphone.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C809B7A10F2B767E003FA00D /* liblibdsmi_iphone.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibdsmi_iphone.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C809B7A80F2B76E2003FA00D /* libdsmi_iphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libdsmi_iphone.h; sourceTree = "<group>"; };
+		C809B7A90F2B76E2003FA00D /* libdsmi_iphone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = libdsmi_iphone.m; sourceTree = "<group>"; };
+		C809B7AA0F2B76E2003FA00D /* osc_client.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = osc_client.c; sourceTree = "<group>"; };
+		C809B7AB0F2B76E2003FA00D /* osc_client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = osc_client.h; sourceTree = "<group>"; };
+		C8B530510F35325D00674424 /* libdsmi_iphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libdsmi_iphone.h; path = include/libdsmi_iphone.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C809B79F0F2B767E003FA00D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C809B7A10F2B767E003FA00D /* liblibdsmi_iphone.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				C8B530430F35321400674424 /* include */,
+				C809B7A80F2B76E2003FA00D /* libdsmi_iphone.h */,
+				C809B7A90F2B76E2003FA00D /* libdsmi_iphone.m */,
+				C809B7AA0F2B76E2003FA00D /* osc_client.c */,
+				C809B7AB0F2B76E2003FA00D /* osc_client.h */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C8B530430F35321400674424 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				C8B530510F35325D00674424 /* libdsmi_iphone.h */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		C809B79D0F2B767E003FA00D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C809B7AC0F2B76E2003FA00D /* libdsmi_iphone.h in Headers */,
+				C809B7AF0F2B76E2003FA00D /* osc_client.h in Headers */,
+				C8B530520F35325D00674424 /* libdsmi_iphone.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		C809B7A00F2B767E003FA00D /* libdsmi_iphone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C809B7A70F2B7686003FA00D /* Build configuration list for PBXNativeTarget "libdsmi_iphone" */;
+			buildPhases = (
+				C809B79D0F2B767E003FA00D /* Headers */,
+				C809B79E0F2B767E003FA00D /* Sources */,
+				C809B79F0F2B767E003FA00D /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libdsmi_iphone;
+			productName = libdsmi_iphone;
+			productReference = C809B7A10F2B767E003FA00D /* liblibdsmi_iphone.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "libdsmi_iphone" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C809B7A00F2B767E003FA00D /* libdsmi_iphone */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C809B79E0F2B767E003FA00D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C809B7AD0F2B76E2003FA00D /* libdsmi_iphone.m in Sources */,
+				C809B7AE0F2B76E2003FA00D /* osc_client.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos2.2;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos2.2;
+			};
+			name = Release;
+		};
+		C809B7A20F2B767E003FA00D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PREBINDING = NO;
+				PRODUCT_NAME = libdsmi_iphone;
+			};
+			name = Debug;
+		};
+		C809B7A30F2B767E003FA00D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PREBINDING = NO;
+				PRODUCT_NAME = libdsmi_iphone;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "libdsmi_iphone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C809B7A70F2B7686003FA00D /* Build configuration list for PBXNativeTarget "libdsmi_iphone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C809B7A20F2B767E003FA00D /* Debug */,
+				C809B7A30F2B767E003FA00D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
