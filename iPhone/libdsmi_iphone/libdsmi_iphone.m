@@ -2,7 +2,7 @@
 //                                                                             //
 //                DSMI_iPhone - iPhone/iPod touch port of the DSMI library     //
 //                                                                             //
-// Version 01-23-2009                                                          //
+// Version .8                                                                  //
 // by 0xtob (Tobias Weyand) & TheRain (Collin Meyer)                           //
 // OSC client by fishuyo                                                       //
 // Licensed under LGPL                                                         //
@@ -41,19 +41,16 @@
 {
 	if (self = [super init])
 	{
-		ipAddress=@"0.0.0.0";
+		int result;
+		int on=1;
 		sock = socket(AF_INET, SOCK_DGRAM, 0); // setup socket for DGRAM (UDP), returns with a socket handle
 		
 		sockin = socket(AF_INET, SOCK_DGRAM, 0);
 		addr_in.sin_family = AF_INET;
 		addr_in.sin_port = htons(IPHONE_PORT);
-		addr_in.sin_addr.s_addr = INADDR_ANY;
+		addr_in.sin_addr.s_addr = htonl(INADDR_ANY);
 		bind(sockin, (struct sockaddr*)&addr_in, sizeof(addr_in));
 		
-		struct ifreq ifr;
-		strcpy(ifr.ifr_name,"en0");
-		ioctl(sock,SIOCGIFADDR,&ifr);
-		saddr=*((struct sockaddr_in *)(&(ifr.ifr_addr)));
 		// Destination
 		addr_out_to.sin_family = AF_INET;
 		addr_out_to.sin_port = htons(PC_PORT);
@@ -61,29 +58,81 @@
 		// Source
 		addr_out_from.sin_family = AF_INET;
 		addr_out_from.sin_port = htons(IPHONE_SENDER_PORT);
-		addr_out_from.sin_addr.s_addr = INADDR_ANY;
-		int result;
-		result=setsockopt(sock, IPPROTO_IP, IP_MULTICAST_IF, &saddr.sin_addr.s_addr, sizeof(saddr.sin_addr.s_addr));
-		unsigned char ttl=1; 
-		result=setsockopt(sock,IPPROTO_IP,IP_MULTICAST_TTL,&ttl,sizeof(ttl));
+		addr_out_from.sin_addr.s_addr = htonl(INADDR_ANY);
+		result=setsockopt(sock,SOL_SOCKET,SO_BROADCAST,&on,sizeof(on));
 		result=bind(sock, (struct sockaddr*)&addr_out_from, sizeof(addr_out_from));
-		}
+		[self getBroadCastIp];
+	}
 	return self;
 }
--(void) setIPString:(NSString *) ip
+-(void) getBroadCastIp
 {
-	ipAddress=ip;
-}
-- (void) writeMIDIMessage:(unsigned char) message withData1:(unsigned char)data1 withData2:(unsigned char) data2
-{
-	char sendbuf[3] = {message, data1, data2};
-	int result=0;
-	inet_aton([ipAddress cStringUsingEncoding: NSASCIIStringEncoding],&saddr.sin_addr);
-	addr_out_to.sin_addr=saddr.sin_addr;
+	const char *ifn="en0";
+	struct in_addr broadaddr;
+	int return_val;
+	int fd = -1;
+	struct ifreq ifr;	
+	fd = socket (PF_INET, SOCK_DGRAM, 0);
 	
+	strncpy (ifr.ifr_name, ifn, sizeof(ifr.ifr_name));
+	
+	// Fetch the broadcast address of this interface by calling ioctl()
+	return_val = ioctl(fd,SIOCGIFBRDADDR, &ifr);
+	
+	if (return_val == 0 ) {
+		if (ifr.ifr_broadaddr.sa_family == AF_INET) {
+			broadaddr =((struct sockaddr_in *)&ifr.ifr_broadaddr)->sin_addr; //sin_ptr->sin_addr;
+		}
+		
+	}
+	
+	//close(fd);
+	addr_out_to.sin_addr=broadaddr;
+}
+- (void) writeMIDIMessage:(unsigned char) messageType MIDIChannel:(unsigned char)midichannel withData1:(unsigned char)data1 withData2:(unsigned char) data2
+{
+	unsigned char message=messageType|midichannel;
+	char sendbuf[3] = {message, data1, data2};
+	int result=0;	
 	result=sendto(sock, &sendbuf, 3, 0, (struct sockaddr*)&addr_out_to, sizeof(addr_out_to));
 }
-
+- (void) listenerSelector
+{
+	while(1)
+	{
+		int res = recvfrom(sockin, recbuf, 3, 0, (struct sockaddr*)&in, &in_size);
+		
+		if(res <= 0){
+		}
+		else
+		{
+			unsigned char MessageType=recbuf[0]&0xF0;
+			unsigned char MIDIChannel=recbuf[0]&0x0F;
+			[MIDIListenerInvocation setArgument:&MessageType atIndex:2];
+			[MIDIListenerInvocation setArgument:&MIDIChannel atIndex:3];
+			[MIDIListenerInvocation setArgument:&recbuf[1] atIndex:4];
+			[MIDIListenerInvocation setArgument:&recbuf[2] atIndex:5];
+			[MIDIListenerInvocation retainArguments];	
+			[MIDIListenerInvocation invoke];
+		}
+	}
+}
+- (void) startMIDIListener:(id)target withSelector:(SEL)selector
+{
+	NSMethodSignature * sig = nil;
+	sig = [[target class] instanceMethodSignatureForSelector:selector];
+	MIDIListenerInvocation = [NSInvocation invocationWithMethodSignature:sig];
+	[MIDIListenerInvocation setTarget:target];
+	[MIDIListenerInvocation setSelector:selector];
+	MIDIListenerThread=[[NSThread alloc] initWithTarget:self selector:@selector(listenerSelector) object:nil];
+	[MIDIListenerThread start];
+}
+-(void) stopMIDIListener
+{
+	[MIDIListenerThread cancel];
+	[MIDIListenerThread dealloc];
+	[MIDIListenerInvocation dealloc];
+}
 // ------------ OSC WRITE ------------ //
 
 // Resets the OSC buffer and sets the destination open sound control address, returns 1 if ok, 0 if address string not valid
