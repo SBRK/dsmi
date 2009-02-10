@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'MIDI Motion Machine' target in the 'MIDI Motion Machine' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+#endif

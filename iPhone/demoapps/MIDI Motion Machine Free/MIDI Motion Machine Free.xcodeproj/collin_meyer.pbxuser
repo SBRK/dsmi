@@ -1,0 +1,1118 @@
+// !$*UTF8*$!
+{
+	1D3623240D0F684500981E51 /* MIDI_Motion_MachineAppDelegate.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {980, 472}}";
+			sepNavSelRange = "{657, 0}";
+			sepNavVisRange = "{0, 664}";
+		};
+	};
+	1D3623250D0F684500981E51 /* MIDI_Motion_MachineAppDelegate.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {980, 1648}}";
+			sepNavSelRange = "{2488, 0}";
+			sepNavVisRange = "{283, 1628}";
+			sepNavWindowFrame = "{{64, -5}, {1209, 778}}";
+		};
+	};
+	1D6058900D05DD3D006BFB54 /* MIDI Motion Machine Free */ = {
+		activeExec = 0;
+		executables = (
+			C81B47510F2EC0410063A666 /* MIDI Motion Machine Free */,
+		);
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Distribution;
+		activeExecutable = C81B47510F2EC0410063A666 /* MIDI Motion Machine Free */;
+		activeSDKPreference = iphonesimulator2.0;
+		activeTarget = 1D6058900D05DD3D006BFB54 /* MIDI Motion Machine Free */;
+		addToTargets = (
+			1D6058900D05DD3D006BFB54 /* MIDI Motion Machine Free */,
+		);
+		breakpoints = (
+			C86B36F30F316C9D005ABEB7 /* SquareMatrixView.m:16 */,
+			C8B52FE00F35274C00674424 /* MIDI_Motion_MachineAppDelegate.m:26 */,
+			C8B5307E0F35363900674424 /* MIDI_Motion_MachineAppDelegate.m:17 */,
+			C8B531050F355EEF00674424 /* MIDI_Motion_MachineAppDelegate.m:26 */,
+			C8B5311F0F3562B100674424 /* MIDI_Motion_MachineAppDelegate.m:26 */,
+			C8B531540F35693D00674424 /* MIDI_Motion_MachineAppDelegate.m:57 */,
+			C8B531560F35694800674424 /* MIDI_Motion_MachineAppDelegate.m:53 */,
+			C8B531580F35694A00674424 /* MIDI_Motion_MachineAppDelegate.m:53 */,
+			C83688630F3E5A5D0093500F /* MIDI_Motion_MachineAppDelegate.m:89 */,
+		);
+		codeSenseManager = C81B475E0F2EC04F0063A666 /* Code sense */;
+		executables = (
+			C81B47510F2EC0410063A666 /* MIDI Motion Machine Free */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXErrorsWarningsDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXErrorsWarningsDataSource_LocationID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					300,
+					692,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXErrorsWarningsDataSource_TypeID,
+					PBXErrorsWarningsDataSource_MessageID,
+					PBXErrorsWarningsDataSource_LocationID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					728,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					688,
+					60,
+					20,
+					48.16259765625,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 255935011;
+			PBXWorkspaceStateSaveDate = 255935011;
+		};
+		perUserProjectItems = {
+			C82E1B570F3CFD41008D9D20 /* PBXTextBookmark */ = C82E1B570F3CFD41008D9D20 /* PBXTextBookmark */;
+			C86B35B40F30269B005ABEB7 /* PBXTextBookmark */ = C86B35B40F30269B005ABEB7 /* PBXTextBookmark */;
+			C86B35B60F30269B005ABEB7 /* PBXTextBookmark */ = C86B35B60F30269B005ABEB7 /* PBXTextBookmark */;
+			C86B35B70F30269B005ABEB7 /* PBXTextBookmark */ = C86B35B70F30269B005ABEB7 /* PBXTextBookmark */;
+			C86B35BD0F30269B005ABEB7 /* PBXTextBookmark */ = C86B35BD0F30269B005ABEB7 /* PBXTextBookmark */;
+			C86B35C20F30269B005ABEB7 /* PBXTextBookmark */ = C86B35C20F30269B005ABEB7 /* PBXTextBookmark */;
+			C86B35C30F30269B005ABEB7 /* PBXTextBookmark */ = C86B35C30F30269B005ABEB7 /* PBXTextBookmark */;
+			C86B35CC0F30269B005ABEB7 /* PBXTextBookmark */ = C86B35CC0F30269B005ABEB7 /* PBXTextBookmark */;
+			C86B37000F316E74005ABEB7 /* PBXTextBookmark */ = C86B37000F316E74005ABEB7 /* PBXTextBookmark */;
+			C86B37030F316E74005ABEB7 /* PBXTextBookmark */ = C86B37030F316E74005ABEB7 /* PBXTextBookmark */;
+			C86B37060F316E74005ABEB7 /* PBXTextBookmark */ = C86B37060F316E74005ABEB7 /* PBXTextBookmark */;
+			C86B370D0F316E74005ABEB7 /* PBXTextBookmark */ = C86B370D0F316E74005ABEB7 /* PBXTextBookmark */;
+			C86B37130F316E74005ABEB7 /* PBXTextBookmark */ = C86B37130F316E74005ABEB7 /* PBXTextBookmark */;
+			C86B371F0F316E74005ABEB7 /* PBXTextBookmark */ = C86B371F0F316E74005ABEB7 /* PBXTextBookmark */;
+			C86B37220F316E74005ABEB7 /* PBXTextBookmark */ = C86B37220F316E74005ABEB7 /* PBXTextBookmark */;
+			C86B375C0F317C68005ABEB7 /* PlistBookmark */ = C86B375C0F317C68005ABEB7 /* PlistBookmark */;
+			C86B37630F317CBF005ABEB7 /* PBXTextBookmark */ = C86B37630F317CBF005ABEB7 /* PBXTextBookmark */;
+			C86B37A00F31842F005ABEB7 /* PBXTextBookmark */ = C86B37A00F31842F005ABEB7 /* PBXTextBookmark */;
+			C86B37A20F31842F005ABEB7 /* PBXTextBookmark */ = C86B37A20F31842F005ABEB7 /* PBXTextBookmark */;
+			C86B37A60F31842F005ABEB7 /* PBXTextBookmark */ = C86B37A60F31842F005ABEB7 /* PBXTextBookmark */;
+			C86B37A90F31842F005ABEB7 /* PBXTextBookmark */ = C86B37A90F31842F005ABEB7 /* PBXTextBookmark */;
+			C89159780F3E7876008974E4 /* PBXTextBookmark */ = C89159780F3E7876008974E4 /* PBXTextBookmark */;
+			C89159790F3E7876008974E4 /* PBXTextBookmark */ = C89159790F3E7876008974E4 /* PBXTextBookmark */;
+			C891597C0F3E7876008974E4 /* PBXTextBookmark */ = C891597C0F3E7876008974E4 /* PBXTextBookmark */;
+			C891597D0F3E7876008974E4 /* PBXTextBookmark */ = C891597D0F3E7876008974E4 /* PBXTextBookmark */;
+			C891597E0F3E7876008974E4 /* PBXTextBookmark */ = C891597E0F3E7876008974E4 /* PBXTextBookmark */;
+			C89159850F3E7876008974E4 /* PBXTextBookmark */ = C89159850F3E7876008974E4 /* PBXTextBookmark */;
+			C891598E0F3E7876008974E4 /* PBXTextBookmark */ = C891598E0F3E7876008974E4 /* PBXTextBookmark */;
+			C8915AA30F3F9FFB008974E4 /* PBXTextBookmark */ = C8915AA30F3F9FFB008974E4 /* PBXTextBookmark */;
+			C8AB38BA0F41465F008566A9 /* PBXTextBookmark */ = C8AB38BA0F41465F008566A9 /* PBXTextBookmark */;
+			C8AB38BB0F41465F008566A9 /* PBXTextBookmark */ = C8AB38BB0F41465F008566A9 /* PBXTextBookmark */;
+			C8AB38BC0F41465F008566A9 /* PBXTextBookmark */ = C8AB38BC0F41465F008566A9 /* PBXTextBookmark */;
+			C8AB38BF0F41465F008566A9 /* PBXTextBookmark */ = C8AB38BF0F41465F008566A9 /* PBXTextBookmark */;
+			C8AB38C00F41465F008566A9 /* PlistBookmark */ = C8AB38C00F41465F008566A9 /* PlistBookmark */;
+			C8AB38C10F41465F008566A9 /* PBXTextBookmark */ = C8AB38C10F41465F008566A9 /* PBXTextBookmark */;
+			C8AB38C20F41465F008566A9 /* PBXTextBookmark */ = C8AB38C20F41465F008566A9 /* PBXTextBookmark */;
+			C8AB38C30F41465F008566A9 /* PBXTextBookmark */ = C8AB38C30F41465F008566A9 /* PBXTextBookmark */;
+			C8AB38C40F41465F008566A9 /* PBXTextBookmark */ = C8AB38C40F41465F008566A9 /* PBXTextBookmark */;
+			C8AB38E40F4149DC008566A9 /* PBXTextBookmark */ = C8AB38E40F4149DC008566A9 /* PBXTextBookmark */;
+			C8AB38E50F4149DC008566A9 /* PlistBookmark */ = C8AB38E50F4149DC008566A9 /* PlistBookmark */;
+			C8AB39000F414BFE008566A9 /* PBXTextBookmark */ = C8AB39000F414BFE008566A9 /* PBXTextBookmark */;
+			C8AB39010F414BFE008566A9 /* PBXTextBookmark */ = C8AB39010F414BFE008566A9 /* PBXTextBookmark */;
+			C8AB391B0F415469008566A9 /* PlistBookmark */ = C8AB391B0F415469008566A9 /* PlistBookmark */;
+			C8AB391C0F415469008566A9 /* PlistBookmark */ = C8AB391C0F415469008566A9 /* PlistBookmark */;
+			C8B52F430F35075100674424 /* PBXBookmark */ = C8B52F430F35075100674424 /* PBXBookmark */;
+			C8B52F4D0F35075100674424 /* PBXTextBookmark */ = C8B52F4D0F35075100674424 /* PBXTextBookmark */;
+			C8B52F670F35075100674424 /* PBXBookmark */ = C8B52F670F35075100674424 /* PBXBookmark */;
+			C8B530080F3527B100674424 /* PBXTextBookmark */ = C8B530080F3527B100674424 /* PBXTextBookmark */;
+			C8B530BF0F353B4C00674424 /* PBXTextBookmark */ = C8B530BF0F353B4C00674424 /* PBXTextBookmark */;
+			C8B530DE0F353D5300674424 /* PBXTextBookmark */ = C8B530DE0F353D5300674424 /* PBXTextBookmark */;
+			C8B530DF0F353D5300674424 /* PBXBookmark */ = C8B530DF0F353D5300674424 /* PBXBookmark */;
+			C8B530E10F353D5300674424 /* PBXBookmark */ = C8B530E10F353D5300674424 /* PBXBookmark */;
+			C8B530E20F353D5300674424 /* PBXTextBookmark */ = C8B530E20F353D5300674424 /* PBXTextBookmark */;
+			C8B530E70F353D5300674424 /* PBXTextBookmark */ = C8B530E70F353D5300674424 /* PBXTextBookmark */;
+			C8B530ED0F353D5300674424 /* PBXBookmark */ = C8B530ED0F353D5300674424 /* PBXBookmark */;
+			C8B531BF0F356DFC00674424 /* PBXTextBookmark */ = C8B531BF0F356DFC00674424 /* PBXTextBookmark */;
+		};
+		sourceControlManager = C81B475D0F2EC04F0063A666 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	8D1107310486CEB800E47090 /* Info.plist */ = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{61, -5}, {1209, 778}}";
+		};
+	};
+	C81B47510F2EC0410063A666 /* MIDI Motion Machine Free */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = "MIDI Motion Machine Free";
+		savedGlobals = {
+		};
+		sourceDirectories = (
+		);
+		variableFormatDictionary = {
+		};
+	};
+	C81B475D0F2EC04F0063A666 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	C81B475E0F2EC04F0063A666 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	C82E1B460F3CF916008D9D20 /* SquareMatrixView.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = SquareMatrixView.m;
+		path = "/Users/collin_meyer/Documents/MIDI Motion Machine/Classes/SquareMatrixView.m";
+		sourceTree = "<absolute>";
+	};
+	C82E1B570F3CFD41008D9D20 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C8B5309A0F353B4C00674424 /* CGGeometry.h */;
+		name = "CGGeometry.h: 260";
+		rLen = 0;
+		rLoc = 8407;
+		rType = 0;
+		vrLen = 714;
+		vrLoc = 8108;
+	};
+	C83688630F3E5A5D0093500F /* MIDI_Motion_MachineAppDelegate.m:89 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 1D3623250D0F684500981E51 /* MIDI_Motion_MachineAppDelegate.m */;
+		functionName = "-accelerometer:didAccelerate:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 89;
+		location = "MIDI Motion Machine";
+		modificationTime = 255936988.71118;
+		state = 2;
+	};
+	C86B34E00F2FD8B8005ABEB7 /* SettingsView.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = SettingsView.h;
+		path = "/Users/collin_meyer/Documents/MIDI Motion Machine Free/Classes/SettingsView.h";
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {980, 449}}";
+			sepNavSelRange = "{88, 0}";
+			sepNavVisRange = "{0, 588}";
+		};
+	};
+	C86B34E10F2FD8B8005ABEB7 /* SettingsView.m */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.objc;
+		name = SettingsView.m;
+		path = "/Users/collin_meyer/Documents/MIDI Motion Machine Free/Classes/SettingsView.m";
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1048, 3280}}";
+			sepNavSelRange = "{4863, 0}";
+			sepNavVisRange = "{3929, 1505}";
+		};
+	};
+	C86B34E20F2FD8B8005ABEB7 /* SettingsViewController.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = SettingsViewController.h;
+		path = "/Users/collin_meyer/Documents/MIDI Motion Machine Free/Classes/SettingsViewController.h";
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {980, 472}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 501}";
+		};
+	};
+	C86B34E90F2FD918005ABEB7 /* SquareMatrixView.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {980, 472}}";
+			sepNavSelRange = "{271, 0}";
+			sepNavVisRange = "{0, 318}";
+		};
+	};
+	C86B34EA0F2FD918005ABEB7 /* SquareMatrixView.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {980, 976}}";
+			sepNavSelRange = "{1583, 0}";
+			sepNavVisRange = "{833, 802}";
+			sepNavWindowFrame = "{{60, -5}, {1209, 778}}";
+		};
+	};
+	C86B35B40F30269B005ABEB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C86B34E90F2FD918005ABEB7 /* SquareMatrixView.h */;
+		name = "SquareMatrixView.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 230;
+		vrLoc = 0;
+	};
+	C86B35B60F30269B005ABEB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C86B34E10F2FD8B8005ABEB7 /* SettingsView.m */;
+		name = "SettingsView.m: 97";
+		rLen = 0;
+		rLoc = 5061;
+		rType = 0;
+		vrLen = 1567;
+		vrLoc = 3939;
+	};
+	C86B35B70F30269B005ABEB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C86B34E00F2FD8B8005ABEB7 /* SettingsView.h */;
+		name = "SettingsView.h: 19";
+		rLen = 0;
+		rLoc = 371;
+		rType = 0;
+		vrLen = 611;
+		vrLoc = 0;
+	};
+	C86B35BD0F30269B005ABEB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C86B34E20F2FD8B8005ABEB7 /* SettingsViewController.h */;
+		name = "SettingsViewController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 501;
+		vrLoc = 0;
+	};
+	C86B35C20F30269B005ABEB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* MIDI_Motion_MachineAppDelegate.m */;
+		name = "MIDI_Motion_MachineAppDelegate.m: 21";
+		rLen = 0;
+		rLoc = 2160;
+		rType = 0;
+		vrLen = 678;
+		vrLoc = 0;
+	};
+	C86B35C30F30269B005ABEB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623240D0F684500981E51 /* MIDI_Motion_MachineAppDelegate.h */;
+		name = "MIDI_Motion_MachineAppDelegate.h: 10";
+		rLen = 0;
+		rLoc = 288;
+		rType = 0;
+		vrLen = 365;
+		vrLoc = 0;
+	};
+	C86B35CC0F30269B005ABEB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C86B34EA0F2FD918005ABEB7 /* SquareMatrixView.m */;
+		name = "SquareMatrixView.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 459;
+		vrLoc = 0;
+	};
+	C86B369F0F315AAA005ABEB7 /* background.png */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = image.png;
+		name = background.png;
+		path = "/Users/collin_meyer/Documents/MIDI Motion Machine/background.png";
+		sourceTree = "<absolute>";
+	};
+	C86B36F30F316C9D005ABEB7 /* SquareMatrixView.m:16 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = C86B34EA0F2FD918005ABEB7 /* SquareMatrixView.m */;
+		functionName = "-initWithFrame:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 16;
+		modificationTime = 255936988.710727;
+		state = 2;
+	};
+	C86B37000F316E74005ABEB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C86B37010F316E74005ABEB7 /* UIImage.h */;
+		name = "UIImage.h: 15";
+		rLen = 5;
+		rLoc = 343;
+		rType = 0;
+		vrLen = 923;
+		vrLoc = 0;
+	};
+	C86B37010F316E74005ABEB7 /* UIImage.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = UIImage.h;
+		path = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIImage.h;
+		sourceTree = "<absolute>";
+	};
+	C86B37030F316E74005ABEB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C86B37040F316E74005ABEB7 /* math.h */;
+		name = "math.h: 223";
+		rLen = 4;
+		rLoc = 12194;
+		rType = 0;
+		vrLen = 820;
+		vrLoc = 11808;
+	};
+	C86B37040F316E74005ABEB7 /* math.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = math.h;
+		path = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk/usr/include/math.h;
+		sourceTree = "<absolute>";
+	};
+	C86B37060F316E74005ABEB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C86B37070F316E74005ABEB7 /* CGContext.h */;
+		name = "CGContext.h: 92";
+		rLen = 8;
+		rLoc = 2364;
+		rType = 0;
+		vrLen = 728;
+		vrLoc = 0;
+	};
+	C86B37070F316E74005ABEB7 /* CGContext.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = CGContext.h;
+		path = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CGContext.h;
+		sourceTree = "<absolute>";
+	};
+	C86B370D0F316E74005ABEB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C86B370E0F316E74005ABEB7 /* UIImage.h */;
+		name = "UIImage.h: 15";
+		rLen = 5;
+		rLoc = 343;
+		rType = 0;
+		vrLen = 923;
+		vrLoc = 0;
+	};
+	C86B370E0F316E74005ABEB7 /* UIImage.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = UIImage.h;
+		path = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIImage.h;
+		sourceTree = "<absolute>";
+	};
+	C86B37130F316E74005ABEB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C86B37140F316E74005ABEB7 /* math.h */;
+		name = "math.h: 223";
+		rLen = 4;
+		rLoc = 12194;
+		rType = 0;
+		vrLen = 820;
+		vrLoc = 11808;
+	};
+	C86B37140F316E74005ABEB7 /* math.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = math.h;
+		path = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk/usr/include/math.h;
+		sourceTree = "<absolute>";
+	};
+	C86B371F0F316E74005ABEB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C86B37200F316E74005ABEB7 /* CGContext.h */;
+		name = "CGContext.h: 92";
+		rLen = 8;
+		rLoc = 2364;
+		rType = 0;
+		vrLen = 728;
+		vrLoc = 0;
+	};
+	C86B37200F316E74005ABEB7 /* CGContext.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = CGContext.h;
+		path = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CGContext.h;
+		sourceTree = "<absolute>";
+	};
+	C86B37220F316E74005ABEB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C86B37230F316E74005ABEB7 /* CGBitmapContext.h */;
+		name = "CGBitmapContext.h: 97";
+		rLen = 42;
+		rLoc = 4076;
+		rType = 0;
+		vrLen = 1331;
+		vrLoc = 2874;
+	};
+	C86B37230F316E74005ABEB7 /* CGBitmapContext.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = CGBitmapContext.h;
+		path = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CGBitmapContext.h;
+		sourceTree = "<absolute>";
+	};
+	C86B375C0F317C68005ABEB7 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleExecutable,
+		);
+		name = "/Users/collin_meyer/Documents/MIDI Motion Machine/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	C86B37630F317CBF005ABEB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C86B37230F316E74005ABEB7 /* CGBitmapContext.h */;
+		name = "CGBitmapContext.h: 97";
+		rLen = 64;
+		rLoc = 4055;
+		rType = 0;
+		vrLen = 1331;
+		vrLoc = 2874;
+	};
+	C86B37A00F31842F005ABEB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C86B37A10F31842F005ABEB7 /* CGColorSpace.h */;
+		name = "CGColorSpace.h: 82";
+		rLen = 60;
+		rLoc = 2566;
+		rType = 0;
+		vrLen = 1705;
+		vrLoc = 3192;
+	};
+	C86B37A10F31842F005ABEB7 /* CGColorSpace.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = CGColorSpace.h;
+		path = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CGColorSpace.h;
+		sourceTree = "<absolute>";
+	};
+	C86B37A20F31842F005ABEB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C86B37A30F31842F005ABEB7 /* CGImage.h */;
+		name = "CGImage.h: 18";
+		rLen = 17;
+		rLoc = 527;
+		rType = 0;
+		vrLen = 1056;
+		vrLoc = 0;
+	};
+	C86B37A30F31842F005ABEB7 /* CGImage.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = CGImage.h;
+		path = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CGImage.h;
+		sourceTree = "<absolute>";
+	};
+	C86B37A60F31842F005ABEB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C86B37A70F31842F005ABEB7 /* CGColorSpace.h */;
+		name = "CGColorSpace.h: 82";
+		rLen = 60;
+		rLoc = 2566;
+		rType = 0;
+		vrLen = 1705;
+		vrLoc = 3192;
+	};
+	C86B37A70F31842F005ABEB7 /* CGColorSpace.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = CGColorSpace.h;
+		path = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CGColorSpace.h;
+		sourceTree = "<absolute>";
+	};
+	C86B37A90F31842F005ABEB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C86B37AA0F31842F005ABEB7 /* CGImage.h */;
+		name = "CGImage.h: 18";
+		rLen = 17;
+		rLoc = 527;
+		rType = 0;
+		vrLen = 1056;
+		vrLoc = 0;
+	};
+	C86B37AA0F31842F005ABEB7 /* CGImage.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = CGImage.h;
+		path = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CGImage.h;
+		sourceTree = "<absolute>";
+	};
+	C891593E0F3E7085008974E4 /* MIDINoteTable.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = MIDINoteTable.h;
+		path = "/Users/collin_meyer/Documents/MIDI Motion Machine Free/Classes/MIDINoteTable.h";
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {980, 472}}";
+			sepNavSelRange = "{273, 0}";
+			sepNavVisRange = "{0, 353}";
+		};
+	};
+	C89159780F3E7876008974E4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C8B5305F0F3534A500674424 /* NSObject.h */;
+		name = "NSObject.h: 65";
+		rLen = 33;
+		rLoc = 1205;
+		rType = 0;
+		vrLen = 523;
+		vrLoc = 1118;
+	};
+	C89159790F3E7876008974E4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C891593E0F3E7085008974E4 /* MIDINoteTable.h */;
+		name = "MIDINoteTable.h: 15";
+		rLen = 0;
+		rLoc = 273;
+		rType = 0;
+		vrLen = 353;
+		vrLoc = 0;
+	};
+	C891597C0F3E7876008974E4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C86B34E20F2FD8B8005ABEB7 /* SettingsViewController.h */;
+		name = "SettingsViewController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 501;
+		vrLoc = 0;
+	};
+	C891597D0F3E7876008974E4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C86B34E00F2FD8B8005ABEB7 /* SettingsView.h */;
+		name = "SettingsView.h: 6";
+		rLen = 0;
+		rLoc = 88;
+		rType = 0;
+		vrLen = 588;
+		vrLoc = 0;
+	};
+	C891597E0F3E7876008974E4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C86B34E10F2FD8B8005ABEB7 /* SettingsView.m */;
+		name = "SettingsView.m: 96";
+		rLen = 0;
+		rLoc = 4863;
+		rType = 0;
+		vrLen = 1505;
+		vrLoc = 3929;
+	};
+	C89159850F3E7876008974E4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C891593E0F3E7085008974E4 /* MIDINoteTable.h */;
+		name = "MIDINoteTable.h: 12";
+		rLen = 80;
+		rLoc = 188;
+		rType = 0;
+		vrLen = 235;
+		vrLoc = 0;
+	};
+	C891598E0F3E7876008974E4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C8B5305F0F3534A500674424 /* NSObject.h */;
+		name = "NSObject.h: 65";
+		rLen = 33;
+		rLoc = 1205;
+		rType = 0;
+		vrLen = 523;
+		vrLoc = 1118;
+	};
+	C8915AA30F3F9FFB008974E4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C82E1B460F3CF916008D9D20 /* SquareMatrixView.m */;
+		name = "SquareMatrixView.m: 23";
+		rLen = 27;
+		rLoc = 571;
+		rType = 0;
+		vrLen = 714;
+		vrLoc = 0;
+	};
+	C8AB38BA0F41465F008566A9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C86B34EA0F2FD918005ABEB7 /* SquareMatrixView.m */;
+		name = "SquareMatrixView.m: 52";
+		rLen = 0;
+		rLoc = 1583;
+		rType = 0;
+		vrLen = 802;
+		vrLoc = 833;
+	};
+	C8AB38BB0F41465F008566A9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C86B34E90F2FD918005ABEB7 /* SquareMatrixView.h */;
+		name = "SquareMatrixView.h: 13";
+		rLen = 0;
+		rLoc = 271;
+		rType = 0;
+		vrLen = 318;
+		vrLoc = 0;
+	};
+	C8AB38BC0F41465F008566A9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623240D0F684500981E51 /* MIDI_Motion_MachineAppDelegate.h */;
+		name = "MIDI_Motion_MachineAppDelegate.h: 24";
+		rLen = 0;
+		rLoc = 657;
+		rType = 0;
+		vrLen = 664;
+		vrLoc = 0;
+	};
+	C8AB38BF0F41465F008566A9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C86B34EA0F2FD918005ABEB7 /* SquareMatrixView.m */;
+		name = "SquareMatrixView.m: 23";
+		rLen = 27;
+		rLoc = 475;
+		rType = 0;
+		vrLen = 714;
+		vrLoc = 0;
+	};
+	C8AB38C00F41465F008566A9 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundlePackageType,
+		);
+		name = "/Users/collin_meyer/Documents/MIDI Motion Machine Free/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	C8AB38C10F41465F008566A9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C86B34EA0F2FD918005ABEB7 /* SquareMatrixView.m */;
+		name = "SquareMatrixView.m: 52";
+		rLen = 0;
+		rLoc = 1583;
+		rType = 0;
+		vrLen = 802;
+		vrLoc = 833;
+	};
+	C8AB38C20F41465F008566A9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C86B34E90F2FD918005ABEB7 /* SquareMatrixView.h */;
+		name = "SquareMatrixView.h: 13";
+		rLen = 0;
+		rLoc = 271;
+		rType = 0;
+		vrLen = 318;
+		vrLoc = 0;
+	};
+	C8AB38C30F41465F008566A9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* MIDI_Motion_MachineAppDelegate.m */;
+		name = "MIDI_Motion_MachineAppDelegate.m: 87";
+		rLen = 0;
+		rLoc = 3981;
+		rType = 0;
+		vrLen = 1187;
+		vrLoc = 2947;
+	};
+	C8AB38C40F41465F008566A9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623240D0F684500981E51 /* MIDI_Motion_MachineAppDelegate.h */;
+		name = "MIDI_Motion_MachineAppDelegate.h: 24";
+		rLen = 0;
+		rLoc = 657;
+		rType = 0;
+		vrLen = 664;
+		vrLoc = 0;
+	};
+	C8AB38E40F4149DC008566A9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* MIDI_Motion_MachineAppDelegate.m */;
+		name = "MIDI_Motion_MachineAppDelegate.m: 21";
+		rLen = 0;
+		rLoc = 750;
+		rType = 0;
+		vrLen = 1427;
+		vrLoc = 170;
+	};
+	C8AB38E50F4149DC008566A9 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleDisplayName,
+		);
+		name = "/Users/collin_meyer/Documents/MIDI Motion Machine Free/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	C8AB39000F414BFE008566A9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* MIDI_Motion_MachineAppDelegate.m */;
+		name = "MIDI_Motion_MachineAppDelegate.m: 62";
+		rLen = 0;
+		rLoc = 2488;
+		rType = 0;
+		vrLen = 1628;
+		vrLoc = 283;
+	};
+	C8AB39010F414BFE008566A9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* MIDI_Motion_MachineAppDelegate.m */;
+		name = "MIDI_Motion_MachineAppDelegate.m: 62";
+		rLen = 0;
+		rLoc = 2488;
+		rType = 0;
+		vrLen = 1628;
+		vrLoc = 283;
+	};
+	C8AB391B0F415469008566A9 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleDisplayName,
+		);
+		name = "/Users/collin_meyer/Documents/MIDI Motion Machine Free/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	C8AB391C0F415469008566A9 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleDisplayName,
+		);
+		name = "/Users/collin_meyer/Documents/MIDI Motion Machine Free/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	C8B52F2C0F35022500674424 /* ring.png */ = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{71, -5}, {1209, 778}}";
+		};
+	};
+	C8B52F430F35075100674424 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = C8B52F2C0F35022500674424 /* ring.png */;
+	};
+	C8B52F4D0F35075100674424 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C8B52F4E0F35075100674424 /* UIView.h */;
+		name = "UIView.h: 111";
+		rLen = 0;
+		rLoc = 4374;
+		rType = 0;
+		vrLen = 2255;
+		vrLoc = 3510;
+	};
+	C8B52F4E0F35075100674424 /* UIView.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = UIView.h;
+		path = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIView.h;
+		sourceTree = "<absolute>";
+	};
+	C8B52F670F35075100674424 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = C8B52F2C0F35022500674424 /* ring.png */;
+	};
+	C8B52FE00F35274C00674424 /* MIDI_Motion_MachineAppDelegate.m:26 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 1D3623250D0F684500981E51 /* MIDI_Motion_MachineAppDelegate.m */;
+		functionName = "-applicationDidFinishLaunching:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 26;
+		modificationTime = 255936988.710752;
+		state = 2;
+	};
+	C8B530080F3527B100674424 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C8B530090F3527B100674424 /* UIButton.h */;
+		name = "UIButton.h: 18";
+		rLen = 95;
+		rLoc = 375;
+		rType = 0;
+		vrLen = 755;
+		vrLoc = 0;
+	};
+	C8B530090F3527B100674424 /* UIButton.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = UIButton.h;
+		path = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIButton.h;
+		sourceTree = "<absolute>";
+	};
+	C8B5305F0F3534A500674424 /* NSObject.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = NSObject.h;
+		path = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSObject.h;
+		sourceTree = "<absolute>";
+	};
+	C8B5307E0F35363900674424 /* MIDI_Motion_MachineAppDelegate.m:17 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 1D3623250D0F684500981E51 /* MIDI_Motion_MachineAppDelegate.m */;
+		functionName = "-applicationDidFinishLaunching:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 17;
+		location = "MIDI Motion Machine";
+		modificationTime = 255936988.710804;
+		state = 2;
+	};
+	C8B5309A0F353B4C00674424 /* CGGeometry.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = CGGeometry.h;
+		path = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CGGeometry.h;
+		sourceTree = "<absolute>";
+	};
+	C8B530BF0F353B4C00674424 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C8B530C00F353B4C00674424 /* CGGeometry.h */;
+		name = "CGGeometry.h: 273";
+		rLen = 0;
+		rLoc = 8689;
+		rType = 0;
+		vrLen = 629;
+		vrLoc = 8308;
+	};
+	C8B530C00F353B4C00674424 /* CGGeometry.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = CGGeometry.h;
+		path = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CGGeometry.h;
+		sourceTree = "<absolute>";
+	};
+	C8B530DE0F353D5300674424 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C8B530090F3527B100674424 /* UIButton.h */;
+		name = "UIButton.h: 17";
+		rLen = 0;
+		rLoc = 342;
+		rType = 0;
+		vrLen = 802;
+		vrLoc = 0;
+	};
+	C8B530DF0F353D5300674424 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = C86B369F0F315AAA005ABEB7 /* background.png */;
+	};
+	C8B530E10F353D5300674424 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = C8B52EB40F34F86800674424 /* icon.png */;
+	};
+	C8B530E20F353D5300674424 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C8B530E30F353D5300674424 /* UIControl.h */;
+		name = "UIControl.h: 19";
+		rLen = 49;
+		rLoc = 558;
+		rType = 0;
+		vrLen = 1028;
+		vrLoc = 0;
+	};
+	C8B530E30F353D5300674424 /* UIControl.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = UIControl.h;
+		path = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIControl.h;
+		sourceTree = "<absolute>";
+	};
+	C8B530E70F353D5300674424 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C8B530E80F353D5300674424 /* UIControl.h */;
+		name = "UIControl.h: 54";
+		rLen = 26;
+		rLoc = 2036;
+		rType = 0;
+		vrLen = 1360;
+		vrLoc = 1173;
+	};
+	C8B530E80F353D5300674424 /* UIControl.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = UIControl.h;
+		path = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIControl.h;
+		sourceTree = "<absolute>";
+	};
+	C8B530ED0F353D5300674424 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = C8B52EB40F34F86800674424 /* icon.png */;
+	};
+	C8B531050F355EEF00674424 /* MIDI_Motion_MachineAppDelegate.m:26 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 1D3623250D0F684500981E51 /* MIDI_Motion_MachineAppDelegate.m */;
+		functionName = "-applicationDidFinishLaunching:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 26;
+		location = "MIDI Motion Machine";
+		modificationTime = 255936988.710852;
+		state = 2;
+	};
+	C8B5311F0F3562B100674424 /* MIDI_Motion_MachineAppDelegate.m:26 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 1D3623250D0F684500981E51 /* MIDI_Motion_MachineAppDelegate.m */;
+		functionName = "-applicationDidFinishLaunching:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 26;
+		location = "MIDI Motion Machine";
+		modificationTime = 255936988.710902;
+		state = 2;
+	};
+	C8B531540F35693D00674424 /* MIDI_Motion_MachineAppDelegate.m:57 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 1D3623250D0F684500981E51 /* MIDI_Motion_MachineAppDelegate.m */;
+		functionName = "-sendXCCAction:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 57;
+		location = "MIDI Motion Machine";
+		modificationTime = 255936988.710944;
+		state = 2;
+	};
+	C8B531560F35694800674424 /* MIDI_Motion_MachineAppDelegate.m:53 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 1D3623250D0F684500981E51 /* MIDI_Motion_MachineAppDelegate.m */;
+		functionName = "-TriggerButtonAction:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 53;
+		location = "MIDI Motion Machine";
+		modificationTime = 255936988.711011;
+		state = 2;
+	};
+	C8B531580F35694A00674424 /* MIDI_Motion_MachineAppDelegate.m:53 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 1D3623250D0F684500981E51 /* MIDI_Motion_MachineAppDelegate.m */;
+		functionName = "-TriggerButtonAction:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 53;
+		location = "MIDI Motion Machine";
+		modificationTime = 255936988.711085;
+		state = 2;
+	};
+	C8B531BF0F356DFC00674424 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C8B52F4E0F35075100674424 /* UIView.h */;
+		name = "UIView.h: 112";
+		rLen = 7;
+		rLoc = 4463;
+		rType = 0;
+		vrLen = 2255;
+		vrLoc = 3510;
+	};
+}
