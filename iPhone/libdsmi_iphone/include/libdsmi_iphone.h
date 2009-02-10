@@ -2,7 +2,7 @@
 //                                                                             //
 //                DSMI_iPhone - iPhone/iPod touch port of the DSMI library     //
 //                                                                             //
-// Version 01-23-2009                                                          //
+// Version .8                                                          //
 // by 0xtob (Tobias Weyand) & TheRain (Collin Meyer)                           //
 // OSC client by fishuyo                                                       //
 // Licensed under LGPL                                                         //
@@ -11,16 +11,6 @@
 /////////////////////////////////////////////////////////////////////////////////
 
 #import <Foundation/Foundation.h>
-#include <sys/socket.h>
-#include <sys/sockio.h>
-#include <arpa/inet.h>
-#include <netinet/in.h>
-#include <sys/fcntl.h>
-#include <sys/ioctl.h>
-#include <net/if.h>
-#include <netinet/in.h>
-#include <stdio.h>
-//#include "osc_client.h"
 // note on is 0x9n where n is the MIDI Channel
 // data1 is note number, data2 is key velocity 
 #define NOTE_ON 0x90
@@ -39,22 +29,18 @@
 #define MIDI_PC	0xE0
 
 @interface libdsmi_iphone : NSObject {
-	int sock; 
-	int sockin;
-	struct sockaddr_in addr_out_from;
-	struct sockaddr_in addr_out_to;
-	struct sockaddr_in addr_in;
-	struct sockaddr_in saddr;
-	NSString *ipAddress;
-	char recbuf[3];
-	
-	int in_size;
-	struct sockaddr_in in;
-//	OSCbuf osc_buffer;
 }
-- (id) init;
-- (void) setIPString:(NSString *) ip;
-- (void) writeMIDIMessage:(unsigned char) message withData1:(unsigned char)data1 withData2:(unsigned char) data2;
+// Call this when creating a new libdsmi connection i
+// Example libdsmi_iphone *libdsmi=[[libdsmi_iphone] init];
+- (id) init; 
+// Call this to send a MIDI message 
+// Example [libdsmi writeMIDIMessage:NOTE_ON MIDIChannel:0 withData1:48 withData2:100];
+// would send a NOTE_ON message to midi channel 0, note C4, with 100 velocity
+- (void) writeMIDIMessage:(unsigned char) messageType MIDIChannel:(unsigned char)midichannel withData1:(unsigned char)data1 withData2:(unsigned char) data2;
+// Not yet implimented
+- (void) startMIDIListener:(id)target withSelector:(SEL)selector;
+// Not yet implimented
+- (void) stopMIDIListener;
 // ------------ OSC WRITE ------------ //
 // OSC messages are sent only over wifi and do not require the dsmidiwifi server application
 //   To send and OSC message:
