@@ -2,7 +2,7 @@
 //                                                                             //
 //                DSMI_iPhone - iPhone/iPod touch port of the DSMI library     //
 //                                                                             //
-// Version .8                                                          //
+// Version 1.0                                                                 //
 // by 0xtob (Tobias Weyand) & TheRain (Collin Meyer)                           //
 // OSC client by fishuyo                                                       //
 // Licensed under LGPL                                                         //
@@ -37,9 +37,9 @@
 // Example [libdsmi writeMIDIMessage:NOTE_ON MIDIChannel:0 withData1:48 withData2:100];
 // would send a NOTE_ON message to midi channel 0, note C4, with 100 velocity
 - (void) writeMIDIMessage:(unsigned char) messageType MIDIChannel:(unsigned char)midichannel withData1:(unsigned char)data1 withData2:(unsigned char) data2;
-// Not yet implimented
+// For MIDI Input, start the MIDI Listener by passing in a selector of the form -(void) MIDIReceiveSelector:(unsigned char) messageType MIDIChannel:(unsigned char)midichannel withData1:(unsigned char)data1 withData2:(unsigned char) data2;
 - (void) startMIDIListener:(id)target withSelector:(SEL)selector;
-// Not yet implimented
+// To stop the MIDI Listener
 - (void) stopMIDIListener;
 // ------------ OSC WRITE ------------ //
 // OSC messages are sent only over wifi and do not require the dsmidiwifi server application
