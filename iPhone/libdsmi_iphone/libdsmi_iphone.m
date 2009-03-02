@@ -2,7 +2,7 @@
 //                                                                             //
 //                DSMI_iPhone - iPhone/iPod touch port of the DSMI library     //
 //                                                                             //
-// Version .8                                                                  //
+// Version .9                                                                 //
 // by 0xtob (Tobias Weyand) & TheRain (Collin Meyer)                           //
 // OSC client by fishuyo                                                       //
 // Licensed under LGPL                                                         //
@@ -44,11 +44,12 @@
 		int result;
 		int on=1;
 		sock = socket(AF_INET, SOCK_DGRAM, 0); // setup socket for DGRAM (UDP), returns with a socket handle
-		
+		in_size=sizeof(in);
 		sockin = socket(AF_INET, SOCK_DGRAM, 0);
+		bzero(&addr_in, sizeof(addr_in)); 
 		addr_in.sin_family = AF_INET;
 		addr_in.sin_port = htons(IPHONE_PORT);
-		addr_in.sin_addr.s_addr = htonl(INADDR_ANY);
+		addr_in.sin_addr.s_addr = INADDR_ANY;
 		bind(sockin, (struct sockaddr*)&addr_in, sizeof(addr_in));
 		
 		// Destination
@@ -87,31 +88,33 @@
 	}
 	
 	//close(fd);
+	//addr_in.sin_addr=broadaddr;
 	addr_out_to.sin_addr=broadaddr;
 }
 - (void) writeMIDIMessage:(unsigned char) messageType MIDIChannel:(unsigned char)midichannel withData1:(unsigned char)data1 withData2:(unsigned char) data2
 {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	unsigned char message=messageType|midichannel;
 	char sendbuf[3] = {message, data1, data2};
 	int result=0;	
 	result=sendto(sock, &sendbuf, 3, 0, (struct sockaddr*)&addr_out_to, sizeof(addr_out_to));
+	[pool release];
 }
 - (void) listenerSelector
 {
 	while(1)
 	{
 		int res = recvfrom(sockin, recbuf, 3, 0, (struct sockaddr*)&in, &in_size);
-		
 		if(res <= 0){
 		}
 		else
 		{
 			unsigned char MessageType=recbuf[0]&0xF0;
 			unsigned char MIDIChannel=recbuf[0]&0x0F;
-			[MIDIListenerInvocation setArgument:&MessageType atIndex:2];
-			[MIDIListenerInvocation setArgument:&MIDIChannel atIndex:3];
-			[MIDIListenerInvocation setArgument:&recbuf[1] atIndex:4];
-			[MIDIListenerInvocation setArgument:&recbuf[2] atIndex:5];
+			[MIDIListenerInvocation setArgument:(void*)&MessageType atIndex:2];
+			[MIDIListenerInvocation setArgument:(void*)&MIDIChannel atIndex:3];
+			[MIDIListenerInvocation setArgument:(void*)&recbuf[1] atIndex:4];
+			[MIDIListenerInvocation setArgument:(void*)&recbuf[2] atIndex:5];
 			[MIDIListenerInvocation retainArguments];	
 			[MIDIListenerInvocation invoke];
 		}
@@ -119,9 +122,10 @@
 }
 - (void) startMIDIListener:(id)target withSelector:(SEL)selector
 {
+	[self writeMIDIMessage:NOTE_OFF MIDIChannel:0xFF withData1:0xFF withData2:0];
 	NSMethodSignature * sig = nil;
 	sig = [[target class] instanceMethodSignatureForSelector:selector];
-	MIDIListenerInvocation = [NSInvocation invocationWithMethodSignature:sig];
+	MIDIListenerInvocation = [[NSInvocation invocationWithMethodSignature:sig] retain];
 	[MIDIListenerInvocation setTarget:target];
 	[MIDIListenerInvocation setSelector:selector];
 	MIDIListenerThread=[[NSThread alloc] initWithTarget:self selector:@selector(listenerSelector) object:nil];
