@@ -2,7 +2,7 @@
 //                                                                             //
 //                DSMI_iPhone - iPhone/iPod touch port of the DSMI library     //
 //                                                                             //
-// Version .9                                                                 //
+// Version v1.0                                                                //
 // by 0xtob (Tobias Weyand) & TheRain (Collin Meyer)                           //
 // OSC client by fishuyo                                                       //
 // Licensed under LGPL                                                         //
@@ -122,7 +122,7 @@
 }
 - (void) startMIDIListener:(id)target withSelector:(SEL)selector
 {
-	[self writeMIDIMessage:NOTE_OFF MIDIChannel:0xFF withData1:0xFF withData2:0];
+	[self writeMIDIMessage:0 MIDIChannel:0 withData1:0 withData2:0];
 	NSMethodSignature * sig = nil;
 	sig = [[target class] instanceMethodSignatureForSelector:selector];
 	MIDIListenerInvocation = [[NSInvocation invocationWithMethodSignature:sig] retain];
