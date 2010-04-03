@@ -11,6 +11,9 @@ What's this?
 
          http://dsmi.tobw.net
 
+  The source code is available at:
+
+         http://code.google.com/p/dsmi
 
 Usage
 -----
