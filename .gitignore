@@ -19,3 +19,9 @@ ds/demoapps/kaosds_/
 ds/demoapps/pulseds/arm7/build/
 ds/demoapps/pulseds/arm9/build/
 ds/libdsmi/build/
+linux/DSMIDIWiFi
+linux/moc_midi2udpthread.cpp
+linux/moc_udp2midithread.cpp
+linux/moc_wifimidiwindow.cpp
+linux/qrc_images.cpp
+
