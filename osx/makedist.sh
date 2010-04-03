@@ -5,6 +5,9 @@ cp -R /Library/Frameworks/QtCore.framework DSMidiWifi.app/Contents/Frameworks
 cp -R /Library/Frameworks/QtGui.framework DSMidiWifi.app/Contents/Frameworks
 cp -R /Library/Frameworks/QtNetwork.framework DSMidiWifi.app/Contents/Frameworks
 
+find DSMidiWifi.app -name "*_debug" | xargs rm
+find DSMidiWifi.app -type d -name "Headers" | xargs rm -rf
+
 echo "bending links"
 
 install_name_tool -id @executable_path/../Frameworks/QtCore.framework/Versions/4/QtCore DSMidiWifi.app/Contents/Frameworks/QtCore.framework/Versions/4/QtCore
