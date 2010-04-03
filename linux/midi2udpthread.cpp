@@ -68,7 +68,7 @@ void Midi2UdpThread::run()
 {
 	QUdpSocket *udpSocket;
 	udpSocket = new QUdpSocket(0);
-	
+	 
 	forever {
 		
 		if (abort) {
