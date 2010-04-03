@@ -6,6 +6,7 @@ Pulse DS
 <= PSG sounds out.
 
 License: GPL
+http://dsmi.tobw.net
 ******************/
 
 #include <nds.h>

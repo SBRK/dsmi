@@ -2,7 +2,8 @@
 //                                                                             //
 //                DSMI - Nintendo DS Music Interface Library                   //
 //                                                                             //
-// Version 12-03-2007                                                          //
+// Version 30-01-2009                                                          //
+// http://dsmi.tobw.net | http://code.google.com/p/dsmi/                       //
 // by 0xtob (Tobias Weyand) & TheRain (Collin Meyer)                           //
 // OSC client by fishuyo                                                       //
 // Licensed under LGPL                                                         //

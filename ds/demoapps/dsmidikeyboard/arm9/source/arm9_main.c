@@ -1,3 +1,14 @@
+/*******************
+ DSMIDIKeyboard
+            by 0xtob
+
+Source code licensed
+under the GPL.
+
+http://dsmi.tobw.net
+*******************/
+
+
 #include <nds.h>
 #include <stdio.h>
 #include <string.h>
