@@ -29,6 +29,8 @@ int default_interface = -1;
 int wifi_enabled = 0;
 int dserial_enabled = 0;
 
+extern void wifiValue32Handler(u32 value, void* data);
+extern void arm9_synctoarm7();
 
 // ------------ PRIVATE ------------ //
 
@@ -67,11 +69,11 @@ extern int dsmi_connect_dserial(void)
 		return 0;
 	
 	int version = dseVersion();
-	if(version < 2) {
-		printf("Version: DSerial1/2\n");
-	} else if(version == 2) {
-		printf("Version: DSerial Edge\n");
-	}
+	//if(version < 2) {
+	//	printf("Version: DSerial1/2\n");
+	//} else if(version == 2) {
+	//	printf("Version: DSerial Edge\n");
+	//}
 	
 	// Upload firmware if necessary
 	if (!dseMatchFirmware((char*)firmware_bin, firmware_bin_end - firmware_bin))
@@ -98,10 +100,68 @@ extern int dsmi_connect_dserial(void)
 	return 1;
 }
 
+void dsmi_timer_50ms(void) {
+    Wifi_Timer(50);
+
+    if(wifi_enabled == 1 && default_interface == DSMI_WIFI)
+    {
+        // Send a keepalive beacon every 3 seconds
+        static u8 counter = 0;
+        counter++;
+        if(counter == 60)
+        {
+            counter = 0;
+            dsmi_write(0, 0, 0);
+        }
+    }
+}
+
+// Modified version of dswifi's init function that uses a custom timer handler
+// In addition to calling Wifi_Timer, new new handler also sends the DSMI keepalive
+// beacon.
+bool dsmi_wifi_init(void) {
+    fifoSetValue32Handler(FIFO_DSWIFI,  wifiValue32Handler, 0);
+
+    u32 wifi_pass = Wifi_Init(WIFIINIT_OPTION_USELED);
+
+    if(!wifi_pass) return false;
+
+    irqSet(IRQ_TIMER3, dsmi_timer_50ms); // setup timer IRQ
+    irqEnable(IRQ_TIMER3);
+
+    Wifi_SetSyncHandler(arm9_synctoarm7); // tell wifi lib to use our handler to notify arm7
+
+    // set timer3
+    TIMER3_DATA = -6553; // 6553.1 * 256 cycles = ~50ms;
+    TIMER3_CR = 0x00C2; // enable, irq, 1/256 clock
+
+    fifoSendAddress(FIFO_DSWIFI, (void *)wifi_pass);
+
+    while(Wifi_CheckInit()==0) {
+        swiWaitForVBlank();
+    }
+
+    int wifiStatus = ASSOCSTATUS_DISCONNECTED;
+
+    Wifi_AutoConnect(); // request connect
+
+    while(wifiStatus != ASSOCSTATUS_ASSOCIATED) {
+        wifiStatus = Wifi_AssocStatus(); // check status
+
+        if(wifiStatus == ASSOCSTATUS_CANNOTCONNECT) return false;
+        swiWaitForVBlank();
+
+    }
+
+    return true;    
+}
 
 extern int dsmi_connect_wifi(void)
 {
-	if(!Wifi_InitDefault(WFC_CONNECT)) {
+    Wifi_EnableWifi();
+
+	if(!dsmi_wifi_init()) {
+        Wifi_DisableWifi();
 		return 0;
 	}
 	
