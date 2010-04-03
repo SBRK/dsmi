@@ -16,8 +16,6 @@ under the GPL.
 
 #include "dsmi_logo_ds.h"
 
-#define PEN_DOWN (~IPC->buttons & (1 << 6))
-
 touchPosition touch;
 int touch_was_down = 0;
 int kaos_touch = 0, kaos_x = 85, kaos_y = 85, old_kaos_x = 85, old_kaos_y = 85;
@@ -105,13 +103,17 @@ void drawSlider3(){
 	}
 }
 
+touchPosition touch;
+
 void VblankHandler()
 {
 	scanKeys();
-	touch = touchReadXY();
+	touchRead(&touch);
+
 	u16 keys = keysDown();
+	u16 held = keysHeld();
 	
-	if(!touch_was_down && PEN_DOWN) {
+	if(!touch_was_down && (held & KEY_TOUCH)) {
 		
 		touch_was_down = 1;
 		
@@ -179,7 +181,7 @@ void VblankHandler()
 		dsmi_osc_send();
 	}
 	
-	else if(touch_was_down && !PEN_DOWN)
+	else if(touch_was_down && !(held & KEY_TOUCH))
 	{
 		touch_was_down = 0;
 		slider_touch1 = 0;
@@ -192,7 +194,7 @@ void VblankHandler()
 		
 	}
 
-	if(touch_was_down && PEN_DOWN) {
+	if(touch_was_down && (held & KEY_TOUCH)) {
 		
 		if( slider_touch1) {
 		  old_slider_val1 = slider_val1;
@@ -255,12 +257,8 @@ void VblankHandler()
 
 int main(void)
 {
-	powerON(POWER_ALL);
-	irqInit();
 	
 	lcdMainOnBottom();
-	
-	irqEnable(IRQ_VBLANK);
 
 	// Set modes
 	videoSetMode(MODE_5_2D | DISPLAY_BG3_ACTIVE);
@@ -271,23 +269,23 @@ int main(void)
 		VRAM_C_SUB_BG_0x06200000 , VRAM_D_LCD);
 	
 	// Gfx on main
-	BG3_CR = BG_BMP16_256x256 | BG_BMP_BASE(0) | BG_PRIORITY(0);
-	BG3_XDX = 1 << 8;
-	BG3_XDY = 0;
-	BG3_YDX = 0;
-	BG3_YDY = 1 << 8;
+	REG_BG3CNT = BG_BMP16_256x256 | BG_BMP_BASE(0) | BG_PRIORITY(0);
+	REG_BG3PA = 1 << 8;
+	REG_BG3PB = 0;
+	REG_BG3PC = 0;
+	REG_BG3PD = 1 << 8;
 	
 	// Text bg on sub
-	SUB_BG0_CR = BG_MAP_BASE(4) | BG_TILE_BASE(0) | BG_PRIORITY(0);
+	REG_BG0CNT_SUB = BG_MAP_BASE(4) | BG_TILE_BASE(0) | BG_PRIORITY(0);
 	BG_PALETTE_SUB[255] = RGB15(31,15,0);
-	consoleInitDefault((u16*)SCREEN_BASE_BLOCK_SUB(4), (u16*)CHAR_BASE_BLOCK_SUB(0), 16);
+	consoleInit(NULL, 0, BgType_Text4bpp, BgSize_T_256x256, 4, 0, false, true);
 	
 	// Gfx on sub
-	SUB_BG2_CR = BG_BMP16_256x256 | BG_MAP_BASE(2) | BG_PRIORITY(1);
-	SUB_BG2_XDX = 1 << 8;
-	SUB_BG2_XDY = 0;
-	SUB_BG2_YDX = 0;
-	SUB_BG2_YDY = 1 << 8;
+	REG_BG2CNT_SUB = BG_BMP16_256x256 | BG_MAP_BASE(2) | BG_PRIORITY(1);
+	REG_BG2PA_SUB = 1 << 8;
+	REG_BG2PB_SUB = 0;
+	REG_BG2PC_SUB = 0;
+	REG_BG2PD_SUB = 1 << 8;
 	
 	u16 i;
 	for(i=0; i<256*192; ++i)
@@ -298,8 +296,6 @@ int main(void)
 	drawSlider3();
 	
 	iprintf("\x1b[12;12HOSC Demo\n");
-	
-	dsmi_setup_wifi_support();
 	
 	iprintf("\x1b[15;0H\x1b[KConnecting\n");
 	int res = dsmi_connect();
