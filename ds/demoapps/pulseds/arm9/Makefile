@@ -46,7 +46,8 @@ LIBS	:=	-ldsmi -ldswifi9 -lnds9
 # list of directories containing libraries, this must be the top level containing
 # include and lib
 #---------------------------------------------------------------------------------
-LIBDIRS	:=	$(LIBNDS)
+DSMIDIR := /home/tob/coding/dsdev/tob/dsmi/dsmi/ds/libdsmi/
+LIBDIRS	:=	$(DSMIDIR) $(LIBNDS)
  
 #---------------------------------------------------------------------------------
 # no real need to edit anything past this point unless you need to add additional
