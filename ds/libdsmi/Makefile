@@ -58,7 +58,7 @@ LIBDIRS	:=	$(LIBNDS)
 ifneq ($(BUILD),$(notdir $(CURDIR)))
 #---------------------------------------------------------------------------------
  
-export ARM9BIN	:=	$(TOPDIR)/libdsmi.a
+export ARM9BIN	:=	$(TOPDIR)/lib/libdsmi.a
 export DEPSDIR := $(CURDIR)/$(BUILD)
 
 export VPATH	:=	$(foreach dir,$(SOURCES),$(CURDIR)/$(dir)) \
