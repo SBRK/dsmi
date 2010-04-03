@@ -66,10 +66,17 @@ extern int dsmi_connect_dserial(void)
 	if(!dseInit())
 		return 0;
 	
+	int version = dseVersion();
+	if(version < 2) {
+		printf("Version: DSerial1/2\n");
+	} else if(version == 2) {
+		printf("Version: DSerial Edge\n");
+	}
+	
 	// Upload firmware if necessary
-	if (!dseMatchFirmware((char*)firmware_bin, firmware_bin_size))
+	if (!dseMatchFirmware((char*)firmware_bin, firmware_bin_end - firmware_bin))
 	{
-		dseUploadFirmware((char *) firmware_bin, firmware_bin_size);
+		dseUploadFirmware((char *) firmware_bin, firmware_bin_end - firmware_bin);
 	}
 	
 	dseBoot();
@@ -80,9 +87,9 @@ extern int dsmi_connect_dserial(void)
 	
 	dseSetModes(ENABLE_CMOS);
 	
-	dseUartSetBaudrate(31250); // MIDI baud rate
+	dseUartSetBaudrate(UART0, 31250); // MIDI baud rate
 	
-	dseUartSetReceiveHandler(dsmi_uart_recv);
+	dseUartSetReceiveHandler(UART0, dsmi_uart_recv);
 	
 	default_interface = DSMI_SERIAL;
 
@@ -159,8 +166,8 @@ extern void dsmi_write(u8 message,u8 data1, u8 data2)
 // Force a MIDI message to be sent over DSerial
 extern void dsmi_write_dserial(u8 message,u8 data1, u8 data2)
 {
-	char sendbuf[3] = {message, data1, data2};
-	dseUartSendBuffer((char*)&sendbuf, 3, true);
+	u8 sendbuf[3] = {message, data1, data2};
+	dseUartSendBuffer(UART0, (char*)sendbuf, 3, true);
 }
 
 

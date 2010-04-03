@@ -55,9 +55,9 @@ void cardSpiInit(CARD_SPI_CLOCK clock) {
 	card_spi_settings.clock = clock;
 	card_spi_settings.enable_irq = 0;
 #ifdef ARM9
-	REG_EXMEMCNT &= ~ARM7_OWNS_CARD; /* NDS Slot Access Rights(0=ARM9, 1=ARM7) */
+	sysSetCardOwner(BUS_OWNER_ARM9);
 #else
-	REG_EXMEMCNT |= ARM7_OWNS_CARD;
+	sysSetCardOwner(BUS_OWNER_ARM7);
 #endif
 	cardSpiSetHandler(NULL);
 	cardSpiStop();
@@ -68,6 +68,7 @@ void cardSpiSetHandler(void (*irqHandler)(void)) {
 /*-------------------------------------------------------------------------------*/
 	card_spi_settings.enable_irq = irqHandler == NULL ? 0 : CR1_ENABLE_IRQ;
 	irqSet(IRQ_CARD_LINE, irqHandler);
+	irqEnable(IRQ_CARD_LINE);
 	cardSpiStop();					/* update CR1 register */
 }
 
