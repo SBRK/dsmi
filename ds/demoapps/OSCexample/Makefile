@@ -23,6 +23,8 @@ INCLUDES	:=	include
 DATA		:=	data  
 GRAPHICS	:=	gfx  
 
+LIBDSMI     := /home/tob/coding/dsdev/tob/dsmi/dsmi/ds/libdsmi
+
 #---------------------------------------------------------------------------------
 # options for code generation
 #---------------------------------------------------------------------------------
@@ -49,7 +51,7 @@ LIBS	:= 	-ldsmi -ldswifi9 -lnds9
 # list of directories containing libraries, this must be the top level containing
 # include and lib
 #---------------------------------------------------------------------------------
-LIBDIRS	:=	$(LIBNDS) /Users/davem/projects/devkitpro/test/libdsmi
+LIBDIRS	:=	$(LIBNDS) $(LIBDSMI)
  
 #---------------------------------------------------------------------------------
 # no real need to edit anything past this point unless you need to add additional
