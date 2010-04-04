@@ -110,7 +110,6 @@ void VblankHandler()
 	scanKeys();
 	touchRead(&touch);
 
-	u16 keys = keysDown();
 	u16 held = keysHeld();
 	
 	if(!touch_was_down && (held & KEY_TOUCH)) {
