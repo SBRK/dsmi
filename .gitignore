@@ -1,6 +1,8 @@
 .*
 *.o
 *.a
+*.d
+*.map
 *.elf
 *.arm7
 *.arm9
@@ -8,7 +10,7 @@
 *.nds
 ds/demoapps/dsmidikeyboard/arm7/build/
 ds/demoapps/dsmidikeyboard/arm9/build/
-ds/demoapps/dsmidikeyboard/gfx/
+ds/demoapps/dsmidikeyboard/graphics/
 ds/demoapps/dsmidikeyboard/tools/
 ds/demoapps/kaosds/arm7/build/
 ds/demoapps/kaosds/arm9/build/
