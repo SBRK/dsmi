@@ -43,7 +43,7 @@ int main(void)
 	int bg2 = bgInitSub(2, BgType_Bmp16, BgSize_B16_256x256, 2, 0);
 	bgSetPriority(bg2, 1);
 	u16 *bg2vram = bgGetGfxPtr(bg2);
-	dmaCopy(dsmi_logo_ds, bg2vram, 256*192);
+	dmaCopy(dsmi_logo_dsBitmap, bg2vram, 256*192);
 	
 	iprintf("\x1b[12;12HPulse DS\n");
 	
