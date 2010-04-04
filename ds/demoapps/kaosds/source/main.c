@@ -93,7 +93,7 @@ int main(void)
 	videoSetModeSub(MODE_5_2D);
 
 	// Text bg on sub
-	PrintConsole *pc = consoleInit(NULL, 0, BgType_Text4bpp, BgSize_T_256x256, 4, 0, false);
+	PrintConsole *pc = consoleInit(NULL, 0, BgType_Text4bpp, BgSize_T_256x256, 4, 0, false, true);
 	bgSetPriority(pc->bgId, 0);
 	BG_PALETTE_SUB[255] = RGB15(31,15,0);
 
@@ -104,7 +104,7 @@ int main(void)
 
 	u16 i;
 	for(i=0; i<256*192; ++i) {
-		sub_vram[i] = dsmi_logo_ds[i];
+		sub_vram[i] = dsmi_logo_dsBitmap[i] | BIT(15);
 	}
 
 	iprintf("\x1b[12;12HKaos-DS\n");
