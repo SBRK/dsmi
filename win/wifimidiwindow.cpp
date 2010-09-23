@@ -20,6 +20,7 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 #include "wifimidiwindow.h"
+#include "midiports.h"
 
 #include <QMessageBox>
 #include <QLabel>
@@ -31,9 +32,9 @@ WifiMidiWindow::WifiMidiWindow(QWidget *parent)
 	:QWidget(parent), lbOutputPorts(0), lbInputPorts(0), midi2udp(0), udp2midi(0)
 {
 	setFixedSize(555, 140);
-	setWindowTitle("DSWifiMIDI");
+	setWindowTitle("DSMIDIWiFi");
 	
-	setWindowIcon(QIcon(":/images/midiwifiico32.png"));
+	setWindowIcon(QIcon(":DSMIDIWIFI.ico"));
 	
 	QLabel *labelInputPorts = new QLabel(this);
 	labelInputPorts->setText("Input ports");
@@ -51,6 +52,7 @@ WifiMidiWindow::WifiMidiWindow(QWidget *parent)
 	lbInputPorts->show();
 	
 	vector<string> inports = getInputPorts();
+	
 	for(unsigned int i=0; i<inports.size(); ++i) {
 		lbInputPorts->addItem(QString(inports.at(i).c_str()));
 	}
@@ -117,12 +119,20 @@ WifiMidiWindow::WifiMidiWindow(QWidget *parent)
 	}
 }
 
+void WifiMidiWindow::setInputPort(int port) {
+	lbInputPorts->setCurrentRow(port - 1);
+}
+
+void WifiMidiWindow::setOutputPort(int port) {
+	lbOutputPorts->setCurrentRow(port - 1);
+}
+
 void WifiMidiWindow::inputPortChanged(int port)
 {
 	if(midi2udp != 0) {
 		bool res = midi2udp->changePort(port);
 		if(res == true) {
-			printf("Input port changed\n");
+			printf("Input port changed to %d\n", port + 1);
 		} else {
 			QMessageBox::critical(0, "Error!", "Error changing input port!");
 		}
@@ -134,66 +144,9 @@ void WifiMidiWindow::outputPortChanged(int port)
 	if(udp2midi != 0) {
 		bool res = udp2midi->changePort(port);
 		if(res == true) {
-			printf("Output port changed\n");
+			printf("Output port changed to %d\n", port+1);
 		} else {
 			QMessageBox::critical(0, "Error!", "Error changing output port!");
 		}
 	}
-}
-
-std::vector<std::string> WifiMidiWindow::getOutputPorts()
-{
-	std::vector< std:: string > res;
-	
-	MIDIOUTCAPS caps;
-	
-	int n_devices = midiOutGetNumDevs();
-	
-	for(int i=0; i < n_devices; ++i)
-	{
-		midiOutGetDevCaps(i, &caps, sizeof(MIDIOUTCAPS));
-		WCHAR *wname = caps.szPname;
-		
-		char name[256];
-		int j;
-		for(j=0; j<255 && wname[j]!=0; ++j) {
-			name[j] = (char)wname[j];
-		}
-		name[j] = 0;
-		
-		res.push_back(std::string(name));
-	}
-	
-	return res;
-}
-
-std::vector<std::string> WifiMidiWindow::getInputPorts()
-{
-	std::vector< std:: string > res;
-	
-	MIDIINCAPS caps;
-	
-	int n_devices = midiInGetNumDevs();
-	
-	for(int i=0; i < n_devices; ++i)
-	{
-		midiInGetDevCaps(i, &caps, sizeof(MIDIINCAPS));
-		WCHAR *wname = caps.szPname;
-		
-		char name[256];
-		int j;
-		for(j=0; j<255 && wname[j]!=0; ++j) {
-			name[j] = (char)wname[j];
-		}
-		name[j] = 0;
-		
-		res.push_back(std::string(name));
-	}
-	
-	if(n_devices == 0) {
-		QMessageBox::critical(0, "Error!", "No Midi input device found!");
-		exit(1);
-	}
-	
-	return res;
 }

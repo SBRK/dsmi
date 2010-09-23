@@ -8,12 +8,12 @@ DEPENDPATH += .
 INCLUDEPATH += .
 QT += network
 #CONFIG += static
-#CONFIG += console
+CONFIG += console
 RESOURCES = images.qrc
 RC_FILE = icon.rc
 
 # Input
-HEADERS += udp2midi.h midi2udp.h wifimidiwindow.h 
-SOURCES += dswifimidi.cpp udp2midi.cpp midi2udp.cpp wifimidiwindow.cpp
+HEADERS += udp2midi.h midi2udp.h wifimidiwindow.h midiports.h
+SOURCES += dswifimidi.cpp udp2midi.cpp midi2udp.cpp wifimidiwindow.cpp midiports.cpp
 
 LIBS = -lwinmm -lwsock32

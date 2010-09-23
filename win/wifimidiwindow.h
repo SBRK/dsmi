@@ -36,14 +36,14 @@ class WifiMidiWindow: public QWidget
 	public:
 		WifiMidiWindow(QWidget *parent = 0);
 	
+		void setInputPort(int port);
+		void setOutputPort(int port);
+	
 	public slots:
 		void inputPortChanged(int port);
 		void outputPortChanged(int port);
 		
 	private:
-		std::vector<std::string> getInputPorts();
-		std::vector<std::string> getOutputPorts();
-		
 		QListWidget *lbOutputPorts, *lbInputPorts;
 		
 		Midi2Udp *midi2udp;
