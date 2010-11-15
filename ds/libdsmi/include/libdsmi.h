@@ -110,6 +110,17 @@ extern int dsmi_read(u8* message, u8* data1, u8* data2);
 extern int dsmi_read_wifi(u8* message, u8* data1, u8* data2);
 
 
+// ------------ OSC READ-------- //
+//Returns 1 if message was received, 0 otherwise
+extern int dsmi_osc_read();
+//returns pointer to address string in osc message
+extern const char* dsmi_osc_getaddr();
+//get next argument in osc message
+//data is buffer to fill with argument data
+//size is size of buffer in, and written data size out
+//type is either 'i' 'f' or 's' for int, float, or string
+//returns 1 if success, 0 if no more arguments, -1 buffer not big enough, -2 other error
+extern int dsmi_osc_getnextarg( void* data, size_t* size, char* type );
 
 // ------------ MISC ------------ //
 

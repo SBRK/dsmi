@@ -18,6 +18,7 @@ int sock, sockin;
 struct sockaddr_in addr_out_from, addr_out_to, addr_in;
 
 OSCbuf osc_buffer;
+OSCbuf osc_recv_buff;
 
 char recbuf[3];
 
@@ -312,7 +313,26 @@ extern int dsmi_read_wifi(u8* message, u8* data1, u8* data2)
 	return 1;
 }
 
+// ------------ OSC READ-------- //
+extern int dsmi_osc_read(){
 
+	int res = recvfrom(sockin, osc_recv_buff.buffer, OSC_MAX_SIZE, 0, (struct sockaddr*)&in, &in_size);
+	
+	if(res <= 0)
+		return 0;
+
+	return osc_decodePacket( &osc_recv_buff);
+}
+extern const char* dsmi_osc_getaddr(){
+
+	return osc_getaddr( &osc_recv_buff);
+
+}
+extern int dsmi_osc_getnextarg( void* data, size_t* size, char* type ){
+
+	return osc_getnextarg( &osc_recv_buff, data, size, type);
+
+}
 
 // ------------ MISC ------------ //
 

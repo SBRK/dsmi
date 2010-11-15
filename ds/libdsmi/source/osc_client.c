@@ -121,3 +121,63 @@ int osc_stringLength( char* str) {
   pad = (4 - len % 4) % 4;
   return len + pad;
 }
+
+
+int osc_decodePacket( OSCbuf* buf){
+  int i;
+
+  if(buf->buffer[0] == ','){
+    buf->posTypeString = 0;
+  }else{
+    buf->posTypeString = osc_stringLength( buf->buffer);
+  }
+
+  if(buf->buffer[buf->posTypeString] != ',')
+    return 0;
+
+  buf->pos = buf->posTypeString + osc_stringLength( &buf->buffer[buf->posTypeString]);
+
+  buf->posTypeString++;
+
+  for(i = buf->posTypeString; buf->buffer[i] != '\0'; i++) 
+    buf->numargs++;
+
+  buf->status = OSC_DECODED;
+  return 1;
+
+}
+const char* osc_getaddr( OSCbuf* buf){
+  if(buf->posTypeString == 0)
+    return NULL;
+  else
+    return (const char*)buf->buffer;
+}
+
+int osc_getnextarg( OSCbuf* buf, void *data, size_t* size, char* type){
+  int len;
+
+  if( buf->status != OSC_DECODED) return -2;
+  if( *size < 4) return -1;
+
+  *type = buf->buffer[buf->posTypeString];
+
+  switch(*type){
+    case 'i':
+    case 'f':	    
+      memcpy(data, &buf->buffer[buf->pos], 4);
+      buf->pos += 4;
+      break;
+    case 's':
+      len = osc_stringLength( &buf->buffer[buf->pos]);
+      if ( *size < len) return -1;
+      *size = len;
+      strncpy(data, &buf->buffer[buf->pos], len );
+      buf->pos += len;
+      break;
+    default:
+      return 0;
+  }
+
+  buf->posTypeString++;
+  return 1;
+}
