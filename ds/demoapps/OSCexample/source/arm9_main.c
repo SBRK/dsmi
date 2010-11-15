@@ -309,8 +309,29 @@ int main(void)
 	
 	while(1)
 	{
-		VblankHandler();
+		int ret, i;
+		char data[32];
+		size_t size = sizeof(data);
+	       	char type;
 
+		VblankHandler();
+		while( dsmi_osc_read() ){
+			iprintf("\x1b[17;0H\x1b[K%s\n", dsmi_osc_getaddr());
+			while( ret = dsmi_osc_getnextarg( data, &size, &type)){
+				if( ret == -1) break; //buffer too small error
+				switch(type){
+					case 'i':
+					case 'f':
+					  iprintf("%c : 0x%x%x%x%x\n", type, data[0], data[1], data[2], data[3]);
+					  break;
+					case 's':
+					  iprintf("%c : %s\n", type, data);
+					  break;
+					default:
+					  break;
+				}
+			}
+		}
 		swiWaitForVBlank();
 	}
 	
