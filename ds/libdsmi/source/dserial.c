@@ -132,28 +132,28 @@ uint8 dseReadBuffer(uint8 selector, char * data) {
 	/* enable card SPI with CS hold */
 	cardSpiStart(true);
 
-	CARD_EEPDATA = SELECT_READ | selector;	/* send character */
+	REG_AUXSPIDATA = SELECT_READ | selector;	/* send character */
 	while(cardSpiBusy());	/* busy wait */
-	CARD_EEPDATA = 0;		/* send character */
+	REG_AUXSPIDATA = 0;		/* send character */
 	while(cardSpiBusy());	/* busy wait */
-	CARD_EEPDATA = 0;		/* send character */
+	REG_AUXSPIDATA = 0;		/* send character */
 	while(cardSpiBusy());	/* busy wait */
-	size = CARD_EEPDATA;	/* read character */
+	size = REG_AUXSPIDATA;	/* read character */
 
 	if (size != 0 && size <= MAX_DATA_SIZE) {
 
 		for ( i = 0; i < size-1; i++ ) {
-			CARD_EEPDATA = 0;		/* send character */
+			REG_AUXSPIDATA = 0;		/* send character */
 			while(cardSpiBusy());	/* busy wait */
-			data[i] = CARD_EEPDATA;	/* receive character */
+			data[i] = REG_AUXSPIDATA;	/* receive character */
 		}
 
 		/* last character has to be transferred with chip select hold disabled */
 		cardSpiStart(false);
 
-		CARD_EEPDATA = 0;				/* send last character */
+		REG_AUXSPIDATA = 0;				/* send last character */
 		while(cardSpiBusy());			/* busy wait */
-		data[size-1] = CARD_EEPDATA;	/* receive character */
+		data[size-1] = REG_AUXSPIDATA;	/* receive character */
 
 	}
 
@@ -181,30 +181,30 @@ bool dseReadFlash(char * data, uint16 pos, uint8 size) {
 	/* enable card SPI with CS hold */
 	cardSpiStart(true);
 
-	CARD_EEPDATA = SELECT_READ | SELECT_FLASH;	/* send character */
+	REG_AUXSPIDATA = SELECT_READ | SELECT_FLASH;	/* send character */
 	while(cardSpiBusy());			/* busy wait */
-	CARD_EEPDATA = size;			/* send character */
+	REG_AUXSPIDATA = size;			/* send character */
 	while(cardSpiBusy());			/* busy wait */
-	CARD_EEPDATA = pos >> 8;		/* send character */
+	REG_AUXSPIDATA = pos >> 8;		/* send character */
 	while(cardSpiBusy());			/* busy wait */
-	CARD_EEPDATA = pos & 0xFF;		/* send character */
+	REG_AUXSPIDATA = pos & 0xFF;		/* send character */
 	while(cardSpiBusy());			/* busy wait */
-	CARD_EEPDATA = 0;				/* send character */
+	REG_AUXSPIDATA = 0;				/* send character */
 	while(cardSpiBusy());			/* busy wait */
 
 
 	for ( i = 0; i < size-1; i++ ) {
-		CARD_EEPDATA = 0;		/* send character */
+		REG_AUXSPIDATA = 0;		/* send character */
 		while(cardSpiBusy());	/* busy wait */
-		data[i] = CARD_EEPDATA;	/* receive character */
+		data[i] = REG_AUXSPIDATA;	/* receive character */
 	}
 
 	/* last character has to be transferred with chip select hold disabled */
 	cardSpiStart(false);
 
-	CARD_EEPDATA = 0;				/* send last character */
+	REG_AUXSPIDATA = 0;				/* send last character */
 	while(cardSpiBusy());			/* busy wait */
-	data[size-1] = CARD_EEPDATA;	/* receive character */
+	data[size-1] = REG_AUXSPIDATA;	/* receive character */
 
 
 
@@ -237,19 +237,19 @@ uint8 dseReadRegister(uint8 reg) {
 	/* enable card SPI with CS hold */
 	cardSpiStart(true);
 
-	CARD_EEPDATA = SELECT_READ | SELECT_REGISTER;	/* send character */
+	REG_AUXSPIDATA = SELECT_READ | SELECT_REGISTER;	/* send character */
 	while(cardSpiBusy());			/* busy wait */
-	CARD_EEPDATA = reg;				/* send character */
+	REG_AUXSPIDATA = reg;				/* send character */
 	while(cardSpiBusy());			/* busy wait */
-	CARD_EEPDATA = 0;				/* send character */
+	REG_AUXSPIDATA = 0;				/* send character */
 	while(cardSpiBusy());			/* busy wait */
 
 	/* last character has to be transferred with chip select hold disabled */
 	cardSpiStart(false);
 
-	CARD_EEPDATA = 0;				/* send character */
+	REG_AUXSPIDATA = 0;				/* send character */
 	while(cardSpiBusy());			/* busy wait */
-	val = CARD_EEPDATA;
+	val = REG_AUXSPIDATA;
 
 	/* disable card SPI */
 	cardSpiStop();
@@ -671,22 +671,22 @@ uint16 dsePinReadAnalog(uint8 port, uint8 pin) {
 	/* enable card SPI with CS hold */
 	cardSpiStart(true);
 
-	CARD_EEPDATA = SELECT_READ | SELECT_ADC;	/* send character */
+	REG_AUXSPIDATA = SELECT_READ | SELECT_ADC;	/* send character */
 	while(cardSpiBusy());			/* busy wait */
-	CARD_EEPDATA = index;			/* send character */
+	REG_AUXSPIDATA = index;			/* send character */
 	while(cardSpiBusy());			/* busy wait */
-	CARD_EEPDATA = 0;				/* send character */
+	REG_AUXSPIDATA = 0;				/* send character */
 	while(cardSpiBusy());			/* busy wait */
-	CARD_EEPDATA = 0;				/* send character */
+	REG_AUXSPIDATA = 0;				/* send character */
 	while(cardSpiBusy());			/* busy wait */
-	val = ((uint16) CARD_EEPDATA) << 8;
+	val = ((uint16) REG_AUXSPIDATA) << 8;
 
 	/* last character has to be transferred with chip select hold disabled */
 	cardSpiStart(false);
 
-	CARD_EEPDATA = 0;				/* send character */
+	REG_AUXSPIDATA = 0;				/* send character */
 	while(cardSpiBusy());			/* busy wait */
-	val |= CARD_EEPDATA & 0xFF;
+	val |= REG_AUXSPIDATA & 0xFF;
 
 	/* disable card SPI */
 	cardSpiStop();

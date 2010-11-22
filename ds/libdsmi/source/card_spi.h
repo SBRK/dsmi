@@ -1,7 +1,7 @@
 /*
 * DSerial Library
 *
-* Copyright (c) 2007, Alexei Karpenko
+* Copyright (c) 2008, Alexei Karpenko
 * All rights reserved.
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the following conditions are met:
