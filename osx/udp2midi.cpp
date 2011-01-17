@@ -89,18 +89,16 @@ void Udp2Midi::run()
 		if( udpSocket->waitForReadyRead(250) == true ) {
 			
 			// Receive from UDP
-			if( udpSocket->pendingDatagramSize() > MIDI_MESSAGE_LENGTH) {
-				printf("udp2midi: received a message of %d bytes, but max length is %d byte\n", (int)udpSocket->pendingDatagramSize(), MIDI_MESSAGE_LENGTH);
-			}
-			
+			size_t msglen = udpSocket->pendingDatagramSize();			
 			QHostAddress from_address;
-			int res = udpSocket->readDatagram((char*)midimsg, MIDI_MESSAGE_LENGTH, &from_address);
+			int res = udpSocket->readDatagram((char*)midimsg, msglen, &from_address);
 			
 			if( res == -1 ) {
 				printf("udp2midi: Error receiving data!\n");
+				continue;
 			}
 			
-			if( (midimsg[0] == 0) && (midimsg[1] == 0) && (midimsg[2] == 0) ) {
+			if( (msglen == 3) && (midimsg[0] == 0) && (midimsg[1] == 0) && (midimsg[2] == 0) ) {
 			
 				string from_ip = from_address.toString().toStdString();
 				cout << "udp2midi: keepalive from " << from_ip << endl;
@@ -111,7 +109,7 @@ void Udp2Midi::run()
 				// Send to MIDI
 				printf("udp2midi: Sending event\n");
 		
-				if( !sendMessage(midimsg, MIDI_MESSAGE_LENGTH) ) {
+				if( !sendMessage(midimsg, msglen) ) {
 					printf("udp2midi: Error sending MIDI message\n");
 				}
 			}
@@ -147,7 +145,12 @@ void Udp2Midi::freeSeq()
 
 bool Udp2Midi::sendMessage(unsigned char *message, int length)
 {
-	printf("udp2midi: got udp msg: 0x%x 0x%x 0x%x\n", message[0], message[1], message[2]);
+	printf("udp2midi: got udp msg: ");
+	for(int i=0; i<length; ++i) {
+		printf("0x%x ", message[i]);
+	}
+	printf("\n");
+		   
 	
 	Byte buffer[64];
 	MIDIPacketList *pktlist = (MIDIPacketList *)buffer;

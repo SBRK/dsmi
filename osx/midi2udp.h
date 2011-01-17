@@ -46,7 +46,7 @@ class Midi2Udp
 		
 		bool go();
 	
-		void midiMessage(const Byte *msg);
+		void midiMessage(const Byte *msg, size_t length);
 	
 		void add_ip(string ip);
 	
@@ -60,7 +60,7 @@ class Midi2Udp
 		void stop();
 	
 		// Midi stuff
-		unsigned char midimsg[MIDI_MESSAGE_LENGTH];
+		unsigned char midimsg[MAX_MESSAGE_LENGTH];
 		MIDIClientRef midi_client;
 		MIDIEndpointRef midi_dest;
 		

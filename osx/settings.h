@@ -25,6 +25,7 @@
 #define PC_PORT					9000
 #define PC_SENDER_PORT			9002
 #define DS_PORT					9001
-#define MIDI_MESSAGE_LENGTH		3
+
+#define MAX_MESSAGE_LENGTH		1024
 
 #endif

@@ -1,6 +1,6 @@
 <!DOCTYPE RCC><RCC version="1.0">
     <qresource>
         <file>images/logo.png</file>
-	<file>images/midiwifiico32.png</file>
+	<file>images/icon.icns</file>
     </qresource>
     </RCC>

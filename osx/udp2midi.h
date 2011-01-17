@@ -68,7 +68,7 @@ class Udp2Midi: public QThread
 		bool abort;
 		
 		// Midi stuff
-		unsigned char midimsg[MIDI_MESSAGE_LENGTH];
+		unsigned char midimsg[MAX_MESSAGE_LENGTH];
 		MIDIClientRef midi_client;
 		MIDIEndpointRef midi_source;
 		

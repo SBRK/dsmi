@@ -33,9 +33,9 @@ WifiMidiWindow::WifiMidiWindow(QWidget *parent)
 	udp2midi = 0;
 	
 	setFixedSize(163, 80);
-	setWindowTitle("DSWifiMIDI");
+	setWindowTitle("DSMI");
 	
-	setWindowIcon(QIcon(":/images/midiwifiico32.png"));
+	setWindowIcon(QIcon(":/images/icon.icns"));
 	
 	QLabel *label_logo = new QLabel(this);
 	label_logo->setGeometry(10, 10, 143, 61);

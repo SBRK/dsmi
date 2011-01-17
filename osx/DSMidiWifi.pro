@@ -8,7 +8,7 @@ DEPENDPATH += .
 INCLUDEPATH += .
 LIBS += /System/Library/Frameworks/CoreMIDI.framework /System/Library/Frameworks/CoreFoundation.framework
 QT += network
-CONFIG += x86 ppc
+CONFIG += x86
 RC_FILE = images/icon.icns
 
 # Input

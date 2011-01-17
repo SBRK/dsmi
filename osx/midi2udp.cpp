@@ -31,7 +31,7 @@ static void	MIDIReceiveCallback(const MIDIPacketList *pktlist, void *refCon, voi
 	
 	for (unsigned int j = 0; j < pktlist->numPackets; ++j)
 	{
-		midi2udp->midiMessage(packet[0].data);
+		midi2udp->midiMessage(packet->data, packet->length);
 
 		packet = MIDIPacketNext(packet);
 	}
@@ -132,15 +132,19 @@ void Midi2Udp::stop()
 	closeUdp();
 }
 
-void Midi2Udp::midiMessage(const Byte *msg)
+void Midi2Udp::midiMessage(const Byte *msg, size_t length)
 {
-	printf("midi2udp: Got midi msg: %x %x %x\n", msg[0], msg[1], msg[2]);
+	printf("midi2udp: Got midi msg: ");
+	for(size_t i=0; i<length; ++i) {
+		printf("0x%x ", msg[i]);
+	}
+	printf("\n");
 	
 	for(set<unsigned long>::iterator ip_it = ds_ips.begin(); ip_it != ds_ips.end(); ++ip_it)
 	{
 		dest.sin_addr.s_addr = *ip_it;
 		
-		int res = sendto(sock, (char*)msg, MIDI_MESSAGE_LENGTH, 0, (struct sockaddr*)&dest, sizeof(dest));
+		int res = sendto(sock, (char*)msg, length, 0, (struct sockaddr*)&dest, sizeof(dest));
 	
 		if( res == -1) {
 			printf("midi2udp: Error sending! (%s)\n", strerror(errno));
