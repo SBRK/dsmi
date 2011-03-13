@@ -119,6 +119,13 @@ WifiMidiWindow::WifiMidiWindow(QWidget *parent)
 	}
 }
 
+WifiMidiWindow::~WifiMidiWindow()
+{
+	printf("closing\n");
+	delete midi2udp;
+	delete udp2midi;
+}
+
 void WifiMidiWindow::setInputPort(int port) {
 	lbInputPorts->setCurrentRow(port - 1);
 }

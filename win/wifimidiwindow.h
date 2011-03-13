@@ -35,6 +35,7 @@ class WifiMidiWindow: public QWidget
 	
 	public:
 		WifiMidiWindow(QWidget *parent = 0);
+		~WifiMidiWindow();
 	
 		void setInputPort(int port);
 		void setOutputPort(int port);
