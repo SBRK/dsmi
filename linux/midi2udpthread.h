@@ -59,7 +59,7 @@ class Midi2UdpThread: public QThread
 		bool abort;
 	
 		// Midi stuff
-		unsigned char midimsg[MIDI_MESSAGE_LENGTH];
+                unsigned char midimsg[MAX_MIDI_MESSAGE_LENGTH];
 		snd_seq_t *seq_handle;
 		int midi_in_port;
 		snd_midi_event_t *eventparser;

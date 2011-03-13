@@ -61,9 +61,7 @@ void Udp2MidiThread::run()
 	QUdpSocket *udpSocket = new QUdpSocket();
 	bool bres = udpSocket->bind(PC_PORT);
 	if( bres == false ) {
-		char msg[256];
-		sprintf(msg, "Could not bind to port %d!\n", PC_PORT);
-		printf(msg);
+                printf("Could not bind to port %d!\n", PC_PORT);
 		return;
 	}
 	
@@ -78,18 +76,15 @@ void Udp2MidiThread::run()
 		if( udpSocket->waitForReadyRead(250) == true ) {
 			
 			// Receive from UDP
-			if( udpSocket->pendingDatagramSize() > MIDI_MESSAGE_LENGTH) {
-				printf("udp2midi: received a message of %d bytes, but max length is %d byte\n", (int)udpSocket->pendingDatagramSize(), MIDI_MESSAGE_LENGTH);
-			}
 			
 			QHostAddress from_address;
-			int res = udpSocket->readDatagram((char*)midimsg, MIDI_MESSAGE_LENGTH, &from_address);
+                        int len = udpSocket->readDatagram((char*)midimsg, MAX_MIDI_MESSAGE_LENGTH, &from_address);
 		
-			if( res == -1 ) {
+                        if( len == -1 ) {
 				printf("udp2midi: Error receiving data!\n");
 			}
 			
-			if( (midimsg[0] == 0) && (midimsg[1] == 0) && (midimsg[2] == 0) ) {
+                        if( (len == 3) && (midimsg[0] == 0) && (midimsg[1] == 0) && (midimsg[2] == 0) ) {
 
 				string from_ip = from_address.toString().toStdString();
 			
@@ -100,9 +95,13 @@ void Udp2MidiThread::run()
 			} else {
 
 				// Send to MIDI
-				printf("udp2midi: Sending event: 0x%x 0x%x 0x%x\n", midimsg[0], midimsg[1], midimsg[2]);
+                                printf("udp2midi: Sending event: ");
+                                for(int i=0; i<len; ++i) {
+                                    printf("0x%x ", midimsg[i]);
+                                }
+                                printf("\n");
 		
-				res = snd_midi_event_encode(eventparser, midimsg, MIDI_MESSAGE_LENGTH, midi_event);
+                                long res = snd_midi_event_encode(eventparser, midimsg, len, midi_event);
 				
 				if( res < 0) {
 					printf("Error encoding midi event!\n");
@@ -149,7 +148,7 @@ bool Udp2MidiThread::initSeq()
 		return false;
 	}
 	
-	res = snd_midi_event_new(MIDI_MESSAGE_LENGTH, &eventparser);
+        res = snd_midi_event_new(MAX_MIDI_MESSAGE_LENGTH, &eventparser);
 	if(res != 0) {
 		printf("udp2midi: Error making midi event parser!\n");
 		

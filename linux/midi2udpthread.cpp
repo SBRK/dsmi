@@ -79,22 +79,27 @@ void Midi2UdpThread::run()
 		
 		if (poll(pfd, npfd, 250) > 0) {
 			
-			printf("midi2udp: got midi event!\n");
-			
 			// Get MIDI event
 			snd_seq_event_input(seq_handle, &midi_event);
 			
-			int res = snd_midi_event_decode(eventparser, midimsg, MIDI_MESSAGE_LENGTH, midi_event);
+			long len = snd_midi_event_decode(eventparser, midimsg, MAX_MIDI_MESSAGE_LENGTH, midi_event);
 			
-			if( res < 0 ) {
+			if( len < 0 ) {
 				printf("midi2udp: Error decoding midi event!\n");
 			} else {
+				printf("midi2udp: got midi event: ");
+				for(int i=0; i<len; ++i) {
+					printf("0x%x ", midimsg[i]);
+				}
+				printf("\n");
+			
 				// Send it over UDP
 				for(set<string>::iterator ip_it = ds_ips.begin(); ip_it != ds_ips.end(); ++ip_it)
 				{
 					QString to_((*ip_it).c_str());
+					printf("sending to %s\n", (*ip_it).c_str());
 					QHostAddress to(to_);
-					udpSocket->writeDatagram((char*)midimsg, MIDI_MESSAGE_LENGTH, to, DS_PORT);
+					udpSocket->writeDatagram((char*)midimsg, len, to, DS_PORT);
 				}
 			}
 			
@@ -126,7 +131,7 @@ bool Midi2UdpThread::initSeq()
 		return false;
 	}
 	
-	res = snd_midi_event_new(MIDI_MESSAGE_LENGTH, &eventparser);
+        res = snd_midi_event_new(MAX_MIDI_MESSAGE_LENGTH, &eventparser);
 	if(res != 0) {
 		printf("midi2udp: Error making midi event parser!\n");
 		
