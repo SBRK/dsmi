@@ -25,16 +25,49 @@
 
 static void CALLBACK midiin_callback(HMIDIIN hMidiIn, UINT wMsg, DWORD dwInstance, DWORD dwParam1, DWORD dwParam2)
 {
-	if(wMsg == MIM_DATA)
-	{
-		Midi2Udp *midi2udp = (Midi2Udp*)dwInstance;
-		midi2udp->midiMessage(wMsg, dwParam1, dwParam2);
+	switch(wMsg) {
+		case MIM_DATA: {
+			Midi2Udp *midi2udp = (Midi2Udp*)dwInstance;
+			
+			midi2udp->midiMessage(wMsg, dwParam1, dwParam2);
+			break;
+		}
+		
+		case MIM_LONGDATA:
+		case MIM_LONGERROR:
+		{
+			Midi2Udp *midi2udp = (Midi2Udp*)dwInstance;
+			MIDIHDR *pmhdr = (MIDIHDR*)dwParam1;
+			if(pmhdr->dwBytesRecorded == 0) {
+				break;
+			}
+			midi2udp->midiSysExMessage(wMsg, pmhdr, dwParam2);
+			if(wMsg == MIM_LONGERROR) {
+				printf("SysEx message incomplete!\n");
+			}
+			break;
+		}
+		
+		case MIM_OPEN: {
+			printf("MIDI Input opened\n");
+			break;
+		}
+		
+		case MIM_CLOSE: {
+			printf("MIDI Input closed\n");
+			break;
+		}
+		
+		default: {
+			printf("got unhandled MIDI message\n");
+			break;
+		}
 	}
 }
 
 Midi2Udp::Midi2Udp()
 {
-	
+
 }
 
 Midi2Udp::~Midi2Udp()
@@ -70,14 +103,23 @@ bool Midi2Udp::changePort(int port)
 
 bool Midi2Udp::initSeq(int port)
 {
-	MMRESULT res = midiInOpen(&midiIn, port, (DWORD)midiin_callback, (DWORD)this, CALLBACK_FUNCTION);
+	closing = false;
+	
+	MMRESULT res = midiInOpen(&midiIn, port, (DWORD)midiin_callback, (DWORD)this, CALLBACK_FUNCTION | MIDI_IO_STATUS);
 	
 	if(res != MMSYSERR_NOERROR) {
 		return false;
 	}
 	
-	res = midiInStart(midiIn);
+	for(unsigned int i=0; i<N_SYSEX_BUFFERS; ++i) {
+		res = prepareSysExBuffer(sysExBuffers[i], &sysExMidiHeaders[i]);
+		if(!res) {
+			printf("Error preparing SysEx Buffer\n");
+			return false;
+		}
+	}
 	
+	res = midiInStart(midiIn);
 	if(res != MMSYSERR_NOERROR) {
 		return false;
 	}
@@ -87,6 +129,11 @@ bool Midi2Udp::initSeq(int port)
 
 void Midi2Udp::freeSeq()
 {
+	closing = true;
+	midiInReset(midiIn);
+	for(unsigned int i=0; i<N_SYSEX_BUFFERS; ++i) {
+		midiInUnprepareHeader(midiIn, &sysExMidiHeaders[i], sizeof(MIDIHDR));
+	}
 	midiInClose(midiIn);
 }
 
@@ -151,19 +198,79 @@ void Midi2Udp::stop()
 	closeUdp();
 }
 
+bool Midi2Udp::prepareSysExBuffer(char *sysExBuffer, MIDIHDR *sysExMidiHeader)
+{
+	sysExMidiHeader->lpData = sysExBuffer;
+	sysExMidiHeader->dwBufferLength = MAX_SYSEX_LENGTH;
+	sysExMidiHeader->dwFlags = 0;
+	int res = midiInPrepareHeader(midiIn, sysExMidiHeader, sizeof(MIDIHDR));
+	if(res != MMSYSERR_NOERROR) {
+		printf("Error preparing SysEx Buffer\n");
+		return false;
+	}
+	res = midiInAddBuffer(midiIn, sysExMidiHeader, sizeof(MIDIHDR));
+	if(res != MMSYSERR_NOERROR) {
+		printf("Error adding SysEx Buffer\n");
+		return false;
+	}
+	return true;
+}
+
 void Midi2Udp::midiMessage(UINT wMsg, DWORD dwParam1, DWORD dwParam2)
 {
 	unsigned char *msg = (unsigned char*)&dwParam1;
 	
-	printf("got midi msg: %x %x %x\n", msg[0], msg[1], msg[2]);
+	// MIDI Messages (non-SysEx) can be 2 or 3 bytes long). Unfortunately Windows
+	// does not tell us the length of the message, so we have to determine the
+	// length looking at the status byte.
+	unsigned int len = 3;
+	unsigned char status = msg[0];
+	// Aftertouch
+	if( ((status & (0xF0)) == 0xC0) || ((status & (0xF0)) == 0xC0) ) {
+		len = 2;
+	// Time code quarter frame || song select
+	} else if( (status == 0xF1) || (status == 0xF3) ) {
+		len = 2;
+	// Undefined (Reserved) (x2) || Tune Request || End of Exclusive
+	} else if( (status == 0xF4) || (status == 0xF5) || (status == 0xF6) || (status == 0xF7) ) {
+		len = 1;
+	// Stsem Real-Time Messages
+	} else if(status >= 0xF8) {
+		len = 1;
+	}
 	
-	for(set<unsigned long>::iterator ip_it = ds_ips.begin(); ip_it != ds_ips.end(); ++ip_it)
-	{
+	printf("got midi msg: %x ", msg[0]);
+	for(unsigned int i=1; i<len; ++i) {
+		printf("%x ", msg[i]);
+	}
+	printf("\n");
+	
+	broadcastMessage(msg, len);
+}
+
+void Midi2Udp::midiSysExMessage(UINT wMsg, MIDIHDR *pmhdr, unsigned long timestamp)
+{
+	size_t len = pmhdr->dwBytesRecorded;
+	unsigned char *msg = (unsigned char*)pmhdr->lpData;
+	printf("got midi sysex msg: ");
+	for(unsigned int i=0; i<len; ++i) {
+		printf("0x%x ", msg[i]);
+	}
+	printf("\n");
+	
+	broadcastMessage(msg, len);
+	
+	if(!closing) {
+		prepareSysExBuffer(pmhdr->lpData, pmhdr);
+	}
+}
+
+void Midi2Udp::broadcastMessage(unsigned char *msg, unsigned int len)
+{
+	for(set<unsigned long>::iterator ip_it = ds_ips.begin(); ip_it != ds_ips.end(); ++ip_it) {
 		dest.sin_addr.s_addr = *ip_it;
-		
-		int res = sendto(sock, (char*)msg, MIDI_MESSAGE_LENGTH, 0, (struct sockaddr *)&dest, sizeof(dest));
-		
-		printf("sent to %x\n", *ip_it);
+		int res = sendto(sock, (char*)msg, len, 0, (struct sockaddr *)&dest, sizeof(dest));
+		//printf("sent to %x\n", *ip_it);
 		
 		if( res == SOCKET_ERROR) {
 			int err = WSAGetLastError();

@@ -53,7 +53,7 @@ class Udp2Midi: public QThread
 	private:
 		bool initSeq(int port);	
 		void freeSeq();
-		bool sendMessage(unsigned char *message, int length);
+		bool sendMessage(unsigned char *message, size_t length);
 	
 		void stop();
 	
@@ -62,7 +62,7 @@ class Udp2Midi: public QThread
 		bool abort;
 		
 		// Midi stuff
-		unsigned char midimsg[MIDI_MESSAGE_LENGTH];
+		unsigned char midimsg[MAX_MESSAGE_LENGTH];
 		HMIDIOUT midiOut;
 		
 		Midi2Udp *midi2udp;

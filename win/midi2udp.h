@@ -44,9 +44,12 @@ class Midi2Udp
 		bool changePort(int port);
 	
 		void midiMessage(UINT wMsg, DWORD dwParam1, DWORD dwParam2);
+		void midiSysExMessage(UINT wMsg, MIDIHDR *pmhdr, unsigned long timestamp);
+	
+		void broadcastMessage(unsigned char *msg, unsigned int len);
 	
 		void add_ip(string ip);
-	
+		
 	private:
 		bool initSeq(int port);	
 		void freeSeq();
@@ -56,16 +59,21 @@ class Midi2Udp
 		
 		void stop();
 	
+		bool prepareSysExBuffer(char *sysExBuffer, MIDIHDR *sysExMidiHeader);
+	
 		// Midi stuff
-		unsigned char midimsg[MIDI_MESSAGE_LENGTH];
+		unsigned char midimsg[MAX_MESSAGE_LENGTH];
 		HMIDIIN midiIn;
 		MIDIHDR midihdr;
-		unsigned char SysExBuffer[256];
+		char sysExBuffers[N_SYSEX_BUFFERS][MAX_SYSEX_LENGTH];
+		MIDIHDR sysExMidiHeaders[N_SYSEX_BUFFERS];
 		
 		// Network
 		int sock;
 		struct sockaddr_in dest;
 		set<unsigned long> ds_ips;
+		
+		bool closing;
 };
 
 #endif

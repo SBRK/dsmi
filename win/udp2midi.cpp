@@ -87,27 +87,26 @@ void Udp2Midi::run()
 		if( udpSocket->waitForReadyRead(250) == true ) {
 			
 			// Receive from UDP
-			if( udpSocket->pendingDatagramSize() > MIDI_MESSAGE_LENGTH) {
-				printf("received a message of %d bytes, but max length is %d byte\n", (int)udpSocket->pendingDatagramSize(), MIDI_MESSAGE_LENGTH);
-			}
+			size_t msglen = udpSocket->pendingDatagramSize();
 			
 			QHostAddress from_address;
-			int res = udpSocket->readDatagram((char*)midimsg, MIDI_MESSAGE_LENGTH, &from_address);
+			int res = udpSocket->readDatagram((char*)midimsg, msglen, &from_address);
 			
 			if( res == -1 ) {
 				printf("Error receiving data!\n");
+				continue;
 			}
 			
 			string from_ip = from_address.toString().toStdString();
 			midi2udp->add_ip(from_ip);
 			
 			// Send to MIDI
-			if((midimsg[0] == 0)&&(midimsg[1] == 0)&&(midimsg[2] == 0)) {
+			if((msglen == 3)&&(midimsg[0] == 0)&&(midimsg[1] == 0)&&(midimsg[2] == 0)) {
 				printf("keepalive from %s\n", from_ip.c_str());
 			} else {
 				printf("Sending event\n");
 		
-				if( !sendMessage(midimsg, MIDI_MESSAGE_LENGTH) ) {
+				if( !sendMessage(midimsg, msglen) ) {
 					printf("Error sending MIDI message\n");
 				}
 			}
@@ -133,26 +132,46 @@ void Udp2Midi::freeSeq()
 	midiOutClose(midiOut);
 }
 
-bool Udp2Midi::sendMessage(unsigned char *message, int length)
+bool Udp2Midi::sendMessage(unsigned char *message, size_t length)
 {
-	printf("got udp msg: 0x%x 0x%x 0x%x\n", message[0], message[1], message[2]);
+	printf("got udp msg: ");
+	for(size_t i=0; i<length; ++i) {
+		printf("0x%x ", message[i]);
+	}
+	printf("\n");
 	
 	union {
         DWORD dwData; 
         BYTE bData[4]; 
     } u; 
+	u.dwData = 0;
 	
-	if(length>4) length = 4;
+	MMRESULT res;
 	
-	for(int i=0; i<4; ++i) {
-		if(i<length) {
+	if(length <= 3) { // Short MIDI message
+		for(int i=0; i<3; ++i) {
 			u.bData[i] = message[i];
-		} else {
-			u.bData[i] = 0;
 		}
+		
+		res = midiOutShortMsg(midiOut, u.dwData);
+	} else { // Long MIDI message (SysEx)
+		MIDIHDR mhdr;
+		mhdr.lpData = (char*)message;
+		mhdr.dwBufferLength = length;
+		mhdr.dwBytesRecorded = length;
+		mhdr.dwUser = 0;
+		mhdr.dwFlags = 0;
+		mhdr.dwOffset = 0;
+		res = midiOutPrepareHeader(midiOut, &mhdr, sizeof(mhdr));
+		if(res != MMSYSERR_NOERROR) {
+			return false;
+		}
+		res = midiOutLongMsg(midiOut, &mhdr, sizeof(mhdr));
+		if(res != MMSYSERR_NOERROR) {
+			return false;
+		}
+		res = midiOutUnprepareHeader(midiOut, &mhdr, sizeof(mhdr));
 	}
-	
-	MMRESULT res = midiOutShortMsg(midiOut, u.dwData);
 	
 	if(res == MMSYSERR_NOERROR) {
 		return true;
