@@ -2,7 +2,7 @@
 //                                                                             //
 //                DSMI_iPhone - iPhone/iPod touch port of the DSMI library     //
 //                                                                             //
-// Version v1.0                                                                //
+// Version v1.0.2                                                                //
 // by 0xtob (Tobias Weyand) & TheRain (Collin Meyer)                           //
 // OSC client by fishuyo                                                       //
 // Licensed under LGPL                                                         //
@@ -37,35 +37,6 @@
 // data1 is the least significant 7 bits and data2 is the most significant 7 bits
 #define MIDI_PC	0xE0
 @implementation libdsmi_iphone
-- (id) init
-{
-	if (self = [super init])
-	{
-		int result;
-		int on=1;
-		sock = socket(AF_INET, SOCK_DGRAM, 0); // setup socket for DGRAM (UDP), returns with a socket handle
-		in_size=sizeof(in);
-		sockin = socket(AF_INET, SOCK_DGRAM, 0);
-		bzero(&addr_in, sizeof(addr_in)); 
-		addr_in.sin_family = AF_INET;
-		addr_in.sin_port = htons(IPHONE_PORT);
-		addr_in.sin_addr.s_addr = INADDR_ANY;
-		bind(sockin, (struct sockaddr*)&addr_in, sizeof(addr_in));
-		
-		// Destination
-		addr_out_to.sin_family = AF_INET;
-		addr_out_to.sin_port = htons(PC_PORT);
-		
-		// Source
-		addr_out_from.sin_family = AF_INET;
-		addr_out_from.sin_port = htons(IPHONE_SENDER_PORT);
-		addr_out_from.sin_addr.s_addr = htonl(INADDR_ANY);
-		result=setsockopt(sock,SOL_SOCKET,SO_BROADCAST,&on,sizeof(on));
-		result=bind(sock, (struct sockaddr*)&addr_out_from, sizeof(addr_out_from));
-		[self getBroadCastIp];
-	}
-	return self;
-}
 -(void) getBroadCastIp
 {
 	const char *ifn="en0";
@@ -91,21 +62,48 @@
 	//addr_in.sin_addr=broadaddr;
 	addr_out_to.sin_addr=broadaddr;
 }
+- (id) init
+{
+	if ((self = [super init]))
+	{
+		int on=1;
+		sock = socket(AF_INET, SOCK_DGRAM, 0); // setup socket for DGRAM (UDP), returns with a socket handle
+		in_size=sizeof(in);
+		sockin = socket(AF_INET, SOCK_DGRAM, 0);
+		bzero(&addr_in, sizeof(addr_in)); 
+		addr_in.sin_family = AF_INET;
+		addr_in.sin_port = htons(IPHONE_PORT);
+		addr_in.sin_addr.s_addr = INADDR_ANY;
+		bind(sockin, (struct sockaddr*)&addr_in, sizeof(addr_in));
+		
+		// Destination
+		addr_out_to.sin_family = AF_INET;
+		addr_out_to.sin_port = htons(PC_PORT);
+		
+		// Source
+		addr_out_from.sin_family = AF_INET;
+		addr_out_from.sin_port = htons(IPHONE_SENDER_PORT);
+		addr_out_from.sin_addr.s_addr = htonl(INADDR_ANY);
+		setsockopt(sock,SOL_SOCKET,SO_BROADCAST,&on,sizeof(on));
+		bind(sock, (struct sockaddr*)&addr_out_from, sizeof(addr_out_from));
+		[self getBroadCastIp];
+	}
+	return self;
+}
 - (void) writeMIDIMessage:(unsigned char) messageType MIDIChannel:(unsigned char)midichannel withData1:(unsigned char)data1 withData2:(unsigned char) data2
 {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	unsigned char message=messageType|midichannel;
-	char sendbuf[3] = {message, data1, data2};
-	int result=0;	
-	result=sendto(sock, &sendbuf, 3, 0, (struct sockaddr*)&addr_out_to, sizeof(addr_out_to));
-	[pool release];
+	char sendbuf[3] = {message, data1, data2};	
+	sendto(sock, &sendbuf, 3, 0, (struct sockaddr*)&addr_out_to, sizeof(addr_out_to));
 }
 - (void) listenerSelector
 {
 	while(1)
 	{
+        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		int res = recvfrom(sockin, recbuf, 3, 0, (struct sockaddr*)&in, &in_size);
-		if(res <= 0){
+		if(res <= 0 || !MIDIListenerThread || [MIDIListenerThread isCancelled]) //changed by gabriel
+        {
 		}
 		else
 		{
@@ -118,6 +116,7 @@
 			[MIDIListenerInvocation retainArguments];	
 			[MIDIListenerInvocation invoke];
 		}
+        [pool drain];
 	}
 }
 - (void) startMIDIListener:(id)target withSelector:(SEL)selector
@@ -135,6 +134,7 @@
 {
 	[MIDIListenerThread cancel];
 	[MIDIListenerThread dealloc];
+    MIDIListenerThread = 0; //added by gabriel
 	[MIDIListenerInvocation dealloc];
 }
 // ------------ OSC WRITE ------------ //

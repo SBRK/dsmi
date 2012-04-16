@@ -3,24 +3,24 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C809B7AC0F2B76E2003FA00D /* libdsmi_iphone.h in Headers */ = {isa = PBXBuildFile; fileRef = C809B7A80F2B76E2003FA00D /* libdsmi_iphone.h */; };
 		C809B7AD0F2B76E2003FA00D /* libdsmi_iphone.m in Sources */ = {isa = PBXBuildFile; fileRef = C809B7A90F2B76E2003FA00D /* libdsmi_iphone.m */; };
 		C809B7AE0F2B76E2003FA00D /* osc_client.c in Sources */ = {isa = PBXBuildFile; fileRef = C809B7AA0F2B76E2003FA00D /* osc_client.c */; };
-		C809B7AF0F2B76E2003FA00D /* osc_client.h in Headers */ = {isa = PBXBuildFile; fileRef = C809B7AB0F2B76E2003FA00D /* osc_client.h */; };
-		C8B530520F35325D00674424 /* libdsmi_iphone.h in Headers */ = {isa = PBXBuildFile; fileRef = C8B530510F35325D00674424 /* libdsmi_iphone.h */; };
+		C8B530520F35325D00674424 /* libdsmi_iphone.h in Headers */ = {isa = PBXBuildFile; fileRef = C8B530510F35325D00674424 /* libdsmi_iphone.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C8D46BCB13C03A2100929B4D /* osc_client.h in Headers */ = {isa = PBXBuildFile; fileRef = C809B7AB0F2B76E2003FA00D /* osc_client.h */; };
+		C8D46BCC13C03A3500929B4D /* libdsmi_iphone.h in Headers */ = {isa = PBXBuildFile; fileRef = C809B7A80F2B76E2003FA00D /* libdsmi_iphone.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C809B7A10F2B767E003FA00D /* liblibdsmi_iphone.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibdsmi_iphone.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		C809B7A80F2B76E2003FA00D /* libdsmi_iphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libdsmi_iphone.h; sourceTree = "<group>"; };
-		C809B7A90F2B76E2003FA00D /* libdsmi_iphone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = libdsmi_iphone.m; sourceTree = "<group>"; };
-		C809B7AA0F2B76E2003FA00D /* osc_client.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = osc_client.c; sourceTree = "<group>"; };
-		C809B7AB0F2B76E2003FA00D /* osc_client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = osc_client.h; sourceTree = "<group>"; };
+		C809B7A80F2B76E2003FA00D /* libdsmi_iphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libdsmi_iphone.h; path = ../libdsmi_iphone.h; sourceTree = "<group>"; };
+		C809B7A90F2B76E2003FA00D /* libdsmi_iphone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = libdsmi_iphone.m; path = ../libdsmi_iphone.m; sourceTree = "<group>"; };
+		C809B7AA0F2B76E2003FA00D /* osc_client.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = osc_client.c; path = ../osc_client.c; sourceTree = "<group>"; };
+		C809B7AB0F2B76E2003FA00D /* osc_client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = osc_client.h; path = ../osc_client.h; sourceTree = "<group>"; };
 		C8B530510F35325D00674424 /* libdsmi_iphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libdsmi_iphone.h; path = include/libdsmi_iphone.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -38,6 +38,10 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C809B7A80F2B76E2003FA00D /* libdsmi_iphone.h */,
+				C809B7A90F2B76E2003FA00D /* libdsmi_iphone.m */,
+				C809B7AA0F2B76E2003FA00D /* osc_client.c */,
+				C809B7AB0F2B76E2003FA00D /* osc_client.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -54,10 +58,6 @@
 			isa = PBXGroup;
 			children = (
 				C8B530430F35321400674424 /* include */,
-				C809B7A80F2B76E2003FA00D /* libdsmi_iphone.h */,
-				C809B7A90F2B76E2003FA00D /* libdsmi_iphone.m */,
-				C809B7AA0F2B76E2003FA00D /* osc_client.c */,
-				C809B7AB0F2B76E2003FA00D /* osc_client.h */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -88,9 +88,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C809B7AC0F2B76E2003FA00D /* libdsmi_iphone.h in Headers */,
-				C809B7AF0F2B76E2003FA00D /* osc_client.h in Headers */,
 				C8B530520F35325D00674424 /* libdsmi_iphone.h in Headers */,
+				C8D46BCB13C03A2100929B4D /* osc_client.h in Headers */,
+				C8D46BCC13C03A3500929B4D /* libdsmi_iphone.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,9 +119,16 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "libdsmi_iphone" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -152,9 +159,9 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PREBINDING = NO;
-				SDKROOT = iphoneos2.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -166,8 +173,9 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				PREBINDING = NO;
-				SDKROOT = iphoneos2.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
@@ -178,7 +186,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				PREBINDING = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PRODUCT_NAME = libdsmi_iphone;
 			};
 			name = Debug;
@@ -189,8 +197,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				PREBINDING = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PRODUCT_NAME = libdsmi_iphone;
 				ZERO_LINK = NO;
 			};
