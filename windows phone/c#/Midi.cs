@@ -9,11 +9,11 @@ using System.Diagnostics;
 namespace DSMI
 {
     public delegate void MessageReceivedHandler(MidiMessageReceivedEventArgs e);
-    public delegate void CCReceivedHandler(MidiCC message);
-    public delegate void NoteOnReceivedHandler(MidiNoteOn message);
-    public delegate void NoteOffReceivedHandler(MidiNoteOff message);
-    public delegate void NoteAftertouchReceivedHandler(MidiNoteAftertouch message);
-    public delegate void PCReceivedHandler(MidiPC message);
+    public delegate void ControlChangeReceivedHandler(MidiMessageReceivedEventArgs e);
+    public delegate void ProgramChangeReceivedHandler(MidiMessageReceivedEventArgs e);
+    public delegate void NoteOnReceivedHandler(MidiMessageReceivedEventArgs e);
+    public delegate void NoteOffReceivedHandler(MidiMessageReceivedEventArgs e);
+    public delegate void AftertouchReceivedHandler(MidiMessageReceivedEventArgs e);
 
     /// <summary>
     /// Send and receives MIDI messages from the DSMI server that you can download here :
@@ -32,7 +32,12 @@ namespace DSMI
         /// <summary>
         /// Fired when a MIDI Control Change message is received from the server
         /// </summary>
-        public static event CCReceivedHandler CCReceivedHandler;
+        public static event ControlChangeReceivedHandler ControlChangeReceivedHandler;
+
+        /// <summary>
+        /// Fired when a MIDI Program Change message is received from the server
+        /// </summary>
+        public static event ProgramChangeReceivedHandler ProgramChangeReceivedHandler;
 
         /// <summary>
         /// Fired when a MIDI Note On message is received from the server
@@ -47,12 +52,7 @@ namespace DSMI
         /// <summary>
         /// Fired when a MIDI Note Aftertouch message is received from the server
         /// </summary>
-        public static event NoteAftertouchReceivedHandler NoteAftertouchReceivedHandler;
-
-        /// <summary>
-        /// Fired when a MIDI Program Change message is received from the server
-        /// </summary>
-        public static event PCReceivedHandler PCReceivedHandler;
+        public static event AftertouchReceivedHandler AftertouchReceivedHandler;
 
         private static Socket _inSocket;
         private static IPEndPoint _inEndpoint;
@@ -94,7 +94,7 @@ namespace DSMI
         /// </summary>
         public static void SendKeepAlive()
         {
-            Send(0, 0, 0);
+            Send(new MidiMessage(0,0,0));
         }
 
         private static Boolean NetworkAvailable
@@ -139,7 +139,7 @@ namespace DSMI
                 return;
 
             SocketAsyncEventArgs eventArgs = GetEventArgs(_outEndpoint, new Byte[3]);
-
+            
             eventArgs.Completed += new EventHandler<SocketAsyncEventArgs>(delegate(object s, SocketAsyncEventArgs e)
             {
                 if (e.SocketError == SocketError.Success && e.BytesTransferred == 3)
@@ -151,43 +151,80 @@ namespace DSMI
                     byte data2 = e.Buffer[2];
                     byte channel = (byte)(message & 0x0F);
 
-                    if (MidiMessageReceivedHandler != null)
-                        MidiMessageReceivedHandler(new MidiMessageReceivedEventArgs(message, data1, data2));
+                    MidiMessage midiMessage;
 
-                    if (MidiCCReceivedHandler != null && (message & MidiMessageType.MIDI_CC) == MidiMessageType.MIDI_CC)
-                        MidiCCReceivedHandler(new MidiCC(channel, data1, data2));
-                    else if (MidiNoteOnReceivedHandler != null && (message & MidiMessageType.NOTE_ON) == MidiMessageType.NOTE_ON)
-                        MidiNoteOnReceivedHandler(new MidiNoteOn(channel, data1, data2));
-                    else if (MidiNoteOffReceivedHandler != null && (message & MidiMessageType.NOTE_OFF) == MidiMessageType.NOTE_OFF)
-                        MidiNoteOffReceivedHandler(new MidiNoteOff(channel, data1, data2));
-                    else if (MidiNoteAftertouchReceivedHandler != null && (message & MidiMessageType.MIDI_AT) == MidiMessageType.MIDI_AT)
-                        MidiNoteAftertouchReceivedHandler(new MidiNoteAftertouch(channel, data1, data2));
-                    else if (MidiPCReceivedHandler != null && (message & MidiMessageType.MIDI_PC) == MidiMessageType.MIDI_PC)
-                        MidiPCReceivedHandler(new MidiPC(channel, data1));
+                    if ((message & MidiMessageType.MIDI_CC) == MidiMessageType.MIDI_CC)
+                    {
+                        midiMessage = new MidiControlChange(channel, data1, data2);
+
+                        if (ControlChangeReceivedHandler != null)
+                            ControlChangeReceivedHandler(new MidiMessageReceivedEventArgs(midiMessage));
+                    }
+                    else if ((message & MidiMessageType.MIDI_PC) == MidiMessageType.MIDI_PC)
+                    {
+                        midiMessage = new MidiProgramChange(channel, data1);
+
+                        if (ProgramChangeReceivedHandler != null)
+                            ProgramChangeReceivedHandler(new MidiMessageReceivedEventArgs(midiMessage));
+                    }
+                    else if ((message & MidiMessageType.NOTE_ON) == MidiMessageType.NOTE_ON)
+                    {
+                        midiMessage = new MidiNoteOn(channel, data1, data2);
+
+                        if (NoteOnReceivedHandler != null)
+                            NoteOnReceivedHandler(new MidiMessageReceivedEventArgs(midiMessage));
+                    }
+                    else if ((message & MidiMessageType.NOTE_OFF) == MidiMessageType.NOTE_OFF)
+                    {
+                        midiMessage = new MidiNoteOff(channel, data1, data2);
+
+                        if (NoteOffReceivedHandler != null)
+                            NoteOffReceivedHandler(new MidiMessageReceivedEventArgs(midiMessage));
+                    }
+                    else if ((message & MidiMessageType.MIDI_AT) == MidiMessageType.MIDI_AT)
+                    {
+                        midiMessage = new MidiAftertouch(channel, data1, data2);
+
+                        if (AftertouchReceivedHandler != null)
+                            AftertouchReceivedHandler(new MidiMessageReceivedEventArgs(midiMessage));
+                    }
+                    else
+                    {
+                        midiMessage = new MidiMessage(message, data1, data2);
+                    }
+
+                    if (MessageReceivedHandler != null)
+                        MessageReceivedHandler(new MidiMessageReceivedEventArgs(midiMessage));
                 }
                 Receive();
             });
-            _inSocket.ReceiveFromAsync(eventArgs);
+            try
+            {
+                _inSocket.ReceiveFromAsync(eventArgs);
+            }
+            catch
+            {
+                _inSocket.Bind(_inEndpoint);
+                Receive();
+            }
         }
 
         /// <summary>
         /// Sends a MIDI message to the DSMI server
         /// </summary>
-        /// <param name="message">MIDI message type</param>
-        /// <param name="data1">Data 1 of the message</param>
-        /// <param name="data2">Data 2 of the message</param>
-        public static void Send(byte message, byte data1, byte data2)
+        /// <param name="midiMessage">The MIDI message to send</param>
+        public static void Send(MidiMessage midiMessage)
         {
             if (!NetworkAvailable)
                 return;
 
-            byte[] toSend = BuildMessage(message, data1, data2);
+            byte[] toSend = BuildMessage(midiMessage.Message, midiMessage.Data1, midiMessage.Data2);
 
             SocketAsyncEventArgs eventArgs = GetEventArgs(_outEndpoint, toSend);
 
             eventArgs.Completed += new EventHandler<SocketAsyncEventArgs>(delegate(object s, SocketAsyncEventArgs e)
             {
-                Debug.WriteLine("DSMI: Midi Message Sent {0} {1} {2}", message, data1, data2);
+                Debug.WriteLine("DSMI: Midi Message Sent {0} {1} {2}", midiMessage.Message, midiMessage.Data1, midiMessage.Data2);
 
                 _clientDone.Set();
             });
@@ -195,34 +232,9 @@ namespace DSMI
             Socket.ConnectAsync(SocketType.Dgram, ProtocolType.Udp, eventArgs);
         }
 
-        public static void Send(MidiCC MidiCC)
-        {
-            Send((byte)(MidiMessageType.MIDI_CC | MidiCC.Channel), MidiCC.ControlNumber, MidiCC.Value);
-        }
-
-        public static void Send(MidiNoteOn MidiNoteOn)
-        {
-            Send((byte)(MidiMessageType.NOTE_ON | MidiNoteOn.Channel), MidiNoteOn.NoteNumber, MidiNoteOn.Velocity);
-        }
-
-        public static void Send(MidiNoteOff MidiNoteOff)
-        {
-            Send((byte)(MidiMessageType.NOTE_OFF | MidiNoteOff.Channel), MidiNoteOff.NoteNumber, MidiNoteOff.Velocity);
-        }
-
-        public static void Send(MidiNoteAftertouch MidiNoteAftertouch)
-        {
-            Send((byte)(MidiMessageType.MIDI_AT | MidiNoteAftertouch.Channel), MidiNoteAftertouch.NoteNumber, MidiNoteAftertouch.Pressure);
-        }
-
-        public static void Send(MidiPC MidiPC)
-        {
-            Send((byte)(MidiMessageType.MIDI_CC | MidiPC.Channel), MidiPC.ProgramNumber, 0);
-        }
-
         public static void SendAllNotesOff(byte channel)
         {
-            Send(new MidiCC(channel, 123, 0));
+            Send(new MidiControlChange(channel, 123, 0));
         }
     }
 

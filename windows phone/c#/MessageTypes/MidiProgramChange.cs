@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DSMI
 {
-    public class MidiNoteOff : MidiMessage
+    public class MidiProgramChange : MidiMessage
     {
         public byte Channel
         {
@@ -16,11 +16,11 @@ namespace DSMI
             }
             set
             {
-                Message = (byte)(MidiMessageType.NOTE_OFF | (value & 0x0F));
+                Message = (byte)(MidiMessageType.MIDI_PC | (value & 0x0F));
             }
         }
 
-        public byte NoteNumber
+        public byte ProgramNumber
         {
             get
             {
@@ -32,21 +32,9 @@ namespace DSMI
             }
         }
 
-        public byte Velocity
+        public MidiProgramChange(byte channel, byte programNumber)
+            : base((byte)(MidiMessageType.MIDI_CC | channel), programNumber, 0)
         {
-            get
-            {
-                return Data2;
-            }
-            set
-            {
-                Data2 = value;
-            }
         }
-
-
-        public MidiNoteOff(byte channel, byte noteNumber, byte velocity) 
-            : base((byte)(MidiMessageType.NOTE_OFF | (channel & 0x0F)), noteNumber, velocity)
-        {}
     }
 }

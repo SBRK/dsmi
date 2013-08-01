@@ -6,17 +6,13 @@ using System.Threading.Tasks;
 
 namespace DSMI
 {
-    public class MidiMessageReceivedEventArgs
+    public class MidiMessageReceivedEventArgs : EventArgs
     {
-        public byte Message;
-        public byte Data1;
-        public byte Data2;
+        public MidiMessage MidiMessage;
 
-        public MidiMessageReceivedEventArgs(byte message, byte data1, byte data2)
+        public MidiMessageReceivedEventArgs(MidiMessage message)
         {
-            Message = message;
-            Data1 = data1;
-            Data2 = data2;
+            MidiMessage = message;
         }
     }
 }

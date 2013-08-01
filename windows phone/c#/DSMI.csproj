@@ -84,14 +84,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="MessageTypes\MidiNoteAftertouch.cs" />
+    <Compile Include="MessageTypes\IMidiMessage.cs" />
+    <Compile Include="MessageTypes\MidiMessage.cs" />
+    <Compile Include="MessageTypes\MidiAftertouch.cs" />
     <Compile Include="MessageTypes\MidiNoteOff.cs" />
-    <Compile Include="DSMI.cs" />
-    <Compile Include="MessageTypes\MidiCC.cs" />
+    <Compile Include="Midi.cs" />
+    <Compile Include="MessageTypes\MidiControlChange.cs" />
     <Compile Include="EventArgs\MidiMessageReceivedEventArgs.cs" />
     <Compile Include="MessageTypes\MidiMessageType.cs" />
     <Compile Include="MessageTypes\MidiNoteOn.cs" />
-    <Compile Include="MessageTypes\MidiPC.cs" />
+    <Compile Include="MessageTypes\MidiProgramChange.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />

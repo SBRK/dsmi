@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace DSMI
 {
-    public class MidiNoteOff : MidiMessage
+    public class MidiAftertouch : MidiMessage
     {
+
         public byte Channel
         {
             get
@@ -16,7 +17,7 @@ namespace DSMI
             }
             set
             {
-                Message = (byte)(MidiMessageType.NOTE_OFF | (value & 0x0F));
+                Message = (byte)(MidiMessageType.MIDI_AT | (value & 0x0F));
             }
         }
 
@@ -32,7 +33,7 @@ namespace DSMI
             }
         }
 
-        public byte Velocity
+        public byte Pressure
         {
             get
             {
@@ -45,8 +46,8 @@ namespace DSMI
         }
 
 
-        public MidiNoteOff(byte channel, byte noteNumber, byte velocity) 
-            : base((byte)(MidiMessageType.NOTE_OFF | (channel & 0x0F)), noteNumber, velocity)
+        public MidiAftertouch(byte channel, byte noteNumber, byte pressure)
+            : base((byte)(MidiMessageType.MIDI_AT | (channel & 0x0F)), noteNumber, pressure)
         {}
     }
 }
